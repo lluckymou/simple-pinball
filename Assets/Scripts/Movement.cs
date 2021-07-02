@@ -4,16 +4,38 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Flippers")]
+    [SerializeField]
+    Rigidbody LeftFlipper;
+    [SerializeField]
+    Rigidbody RightFlipper;
+    [SerializeField]
+    float RangeAngle;
+
+    [Header("Ball launching mechanism")]
+    [SerializeField]
+    GameObject Spring;
+
+    [SerializeField, Range(0, 255)]
+    byte MaxForce;
+    
+    [SerializeField, Range(0, 255)]
+    byte MinForce;
+
+    // Private variables
+
+    void Awake()
     {
-        GetComponent<Rigidbody>().centerOfMass = new Vector3(0.6f, 0, 0);
+        RightFlipper.centerOfMass += new Vector3(0, -0.86f, 0);
+        // LeftFlipper.centerOfMass += new Vector3(0, -0.86f, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.RightArrow))
-            GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, -1) * 200f);
+            RightFlipper.AddRelativeTorque(new Vector3(0, 0, -1) * 200);
+        
+        // if (Input.GetKey(KeyCode.LeftArrow))
+            // LeftFlipper.AddRelativeTorque(new Vector3(0, 0, 1) * 200);
     }
 }
