@@ -6,11 +6,9 @@ public class Movement : MonoBehaviour
 {
     [Header("Flippers")]
     [SerializeField]
-    Rigidbody LeftFlipper;
+    HingeJoint LeftFlipper;
     [SerializeField]
-    Rigidbody RightFlipper;
-    [SerializeField]
-    float RangeAngle;
+    HingeJoint RightFlipper;
 
     [Header("Ball launching mechanism")]
     [SerializeField]
@@ -22,20 +20,28 @@ public class Movement : MonoBehaviour
     [SerializeField, Range(0, 255)]
     byte MinForce;
 
-    // Private variables
-
-    void Awake()
-    {
-        RightFlipper.centerOfMass += new Vector3(0, -0.86f, 0);
-        // LeftFlipper.centerOfMass += new Vector3(0, -0.86f, 0);
-    }
-
     void Update()
     {
+        // Right flipper
         if (Input.GetKey(KeyCode.RightArrow))
-            RightFlipper.AddRelativeTorque(new Vector3(0, 0, -1) * 200);
+            RightFlipper.motor = Rotate(1000);
+
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+            RightFlipper.motor = Rotate(-1000);
         
-        // if (Input.GetKey(KeyCode.LeftArrow))
-            // LeftFlipper.AddRelativeTorque(new Vector3(0, 0, 1) * 200);
+        // Left flipper
+        if (Input.GetKey(KeyCode.LeftArrow))
+            LeftFlipper.motor = Rotate(-1000);
+
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+            LeftFlipper.motor = Rotate(1000);
+    }
+
+    JointMotor Rotate(float velocity, float force = 100)
+    {
+        JointMotor jointMotor = new JointMotor();
+        jointMotor.force = force;
+        jointMotor.targetVelocity = velocity;
+        return jointMotor;
     }
 }
