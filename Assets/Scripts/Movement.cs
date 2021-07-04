@@ -24,20 +24,20 @@ public class Movement : MonoBehaviour
     {
         // Right flipper
         if (Input.GetKey(KeyCode.RightArrow))
-            RightFlipper.motor = Rotate(1000);
+            RightFlipper.motor = Rotate(2000);
 
         if (Input.GetKeyUp(KeyCode.RightArrow))
-            RightFlipper.motor = Rotate(-1000);
+            RightFlipper.motor = Rotate(-2000);
         
         // Left flipper
         if (Input.GetKey(KeyCode.LeftArrow))
-            LeftFlipper.motor = Rotate(-1000);
+            LeftFlipper.motor = Rotate(-2000);
 
         if (Input.GetKeyUp(KeyCode.LeftArrow))
-            LeftFlipper.motor = Rotate(1000);
+            LeftFlipper.motor = Rotate(2000);
     }
 
-    JointMotor Rotate(float velocity, float force = 100)
+    JointMotor Rotate(float velocity, float force = 200)
     {
         JointMotor jointMotor = new JointMotor();
         jointMotor.force = force;
