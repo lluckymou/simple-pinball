@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 744419425072845816}
   - component: {fileID: 9174598173895839527}
   - component: {fileID: 294577300181310058}
+  - component: {fileID: 7707803824726051914}
   - component: {fileID: 2963530707945961597}
   m_Layer: 0
   m_Name: Slingshot
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5466974630831008652}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -1.6938224, y: 2.0496569, z: 3.3510928}
-  m_LocalScale: {x: 65.340004, y: 99.999985, z: 99.999985}
+  m_LocalScale: {x: 65.340004, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -97,6 +98,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 1400d9519477f6948a54a472a8dd0787, type: 3}
+--- !u!114 &7707803824726051914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466974630831008652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94870760a663134f90fb82b6a8a8a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LitMaterial: {fileID: 2100000, guid: 77e05e6d1ba65284590fe224f2e97ee3, type: 2}
 --- !u!114 &2963530707945961597
 MonoBehaviour:
   m_ObjectHideFlags: 0
