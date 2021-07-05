@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RandomForce: 0
-  MinForce: 8
+  MinForce: 6
   MaxForce: 5
 --- !u!114 &2886804879427329887
 MonoBehaviour:
