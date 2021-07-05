@@ -28,17 +28,17 @@ public class Movement : MonoBehaviour
     {
         // Right flipper
         if (Input.GetKey(KeyCode.RightArrow))
-            RightFlipper.motor = RotateFlipper(2000);
+            RightFlipper.motor = RotateFlipper(1500);
 
         if (Input.GetKeyUp(KeyCode.RightArrow))
-            RightFlipper.motor = RotateFlipper(-2000);
+            RightFlipper.motor = RotateFlipper(-1500);
         
         // Left flipper
         if (Input.GetKey(KeyCode.LeftArrow))
-            LeftFlipper.motor = RotateFlipper(-2000);
+            LeftFlipper.motor = RotateFlipper(-1500);
 
         if (Input.GetKeyUp(KeyCode.LeftArrow))
-            LeftFlipper.motor = RotateFlipper(2000);
+            LeftFlipper.motor = RotateFlipper(1500);
 
         // Launching mechanism
         if (Input.GetKeyDown(KeyCode.Space))
@@ -51,7 +51,7 @@ public class Movement : MonoBehaviour
             ReleaseForce();
     }
 
-    JointMotor RotateFlipper(float velocity, float force = 200)
+    JointMotor RotateFlipper(float velocity, float force = 150)
     {
         JointMotor jointMotor = new JointMotor();
         jointMotor.force = force;
