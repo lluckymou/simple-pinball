@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3002923232183907873}
   m_Layer: 0
   m_Name: Pinball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
 
     [Header("Ball launching mechanism")]
     [SerializeField]
-    GameObject Spring;
+    Plunger Spring;
 
     [SerializeField, Range(0, 50)]
     byte MaxForce;
@@ -41,11 +41,14 @@ public class Movement : MonoBehaviour
             LeftFlipper.motor = RotateFlipper(2000);
 
         // Launching mechanism
+        if (Input.GetKeyDown(KeyCode.Space))
+            Spring.Retract();
+
         if (Input.GetKey(KeyCode.Space))
-            RetractPlunger();
+            AccumulateForce();
 
         if (Input.GetKeyUp(KeyCode.Space))
-            ActivatePlunger();
+            ReleaseForce();
     }
 
     JointMotor RotateFlipper(float velocity, float force = 200)
@@ -56,9 +59,8 @@ public class Movement : MonoBehaviour
         return jointMotor;
     }
 
-    void RetractPlunger()
+    void AccumulateForce()
     {
-        Spring.GetComponent<Animator>().Play("Stress");
         if(!activated)
         {
             force += 0.1f;
@@ -71,9 +73,13 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void ActivatePlunger()
+    void ReleaseForce()
     {
-        Spring.GetComponent<Animator>().Play("Release");
+        Spring.Release();
+
+        foreach(Rigidbody rb in Spring.ObjectsInSpring)
+            rb.AddForce(force*Vector3.forward);
+
         force = MinForce;
         activated = false;
     }
