@@ -30,23 +30,23 @@ public class Movement : MonoBehaviour
     void Update()
     {
         // Right flipper
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             RightFlipper.GetComponent<AudioSource>().Play();
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             RightFlipper.motor = RotateFlipper(1500);
 
-        if (Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
             RightFlipper.motor = RotateFlipper(-1500);
         
         // Left flipper
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             LeftFlipper.GetComponent<AudioSource>().Play();
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             LeftFlipper.motor = RotateFlipper(-1500);
 
-        if (Input.GetKeyUp(KeyCode.A))
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
             LeftFlipper.motor = RotateFlipper(1500);
 
         // Launching mechanism
