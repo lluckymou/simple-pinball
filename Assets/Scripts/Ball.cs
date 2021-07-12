@@ -13,5 +13,7 @@ public class Ball : MonoBehaviour
             dir = -dir.normalized;
             GetComponent<Rigidbody>().AddForce(dir * bo.BoostForce);
         }
+
+        GetComponent<AudioSource>().Play();
     }
 }

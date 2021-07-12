@@ -7,6 +7,17 @@ public class Plunger : MonoBehaviour
     [SerializeField]
     Animator Spring;
 
+    [Header("Sound Effects")]
+    [SerializeField]
+    AudioClip stress;
+
+    [SerializeField]
+    AudioClip fail;
+
+    [SerializeField]
+    AudioClip launch;
+
+    [HideInInspector]
     public List<Rigidbody> ObjectsInSpring = new List<Rigidbody>();
 
     void OnTriggerEnter(Collider c)
@@ -21,8 +32,36 @@ public class Plunger : MonoBehaviour
             ObjectsInSpring.Remove(c.GetComponent<Rigidbody>());
     }
 
-    public void Retract() => Spring.Play("Stress");
+    public void Retract()
+    {
+        PlaySound("STRESS");
+        Spring.Play("Stress");
+    }
 
-    public void Release() => Spring.Play("Release");
+    public void Fail() => PlaySound("FAIL");
+
+    public void Release()
+    {
+        PlaySound("LAUNCH");
+        Spring.Play("Release");
+    }
+
+    void PlaySound(string soundKey)
+    {
+        GetComponent<AudioSource>().Stop();
+        
+        switch(soundKey)
+        {
+            case "LAUNCH":
+                GetComponent<AudioSource>().PlayOneShot(launch);
+                break;
+            case "FAIL":
+                GetComponent<AudioSource>().PlayOneShot(fail);
+                break;
+            case "STRESS":
+                GetComponent<AudioSource>().PlayOneShot(stress);
+                break;
+        }
+    } 
 
 }

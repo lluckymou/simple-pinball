@@ -11,8 +11,11 @@ public class Slingshot : MonoBehaviour
 
     void Awake() => original = GetComponent<MeshRenderer>().material;
 
-    void OnCollisionEnter(Collision c) =>
+    void OnCollisionEnter(Collision c)
+    {
         GetComponent<MeshRenderer>().material = LitMaterial;
+        GetComponent<AudioSource>().Play();
+    }
 
     void OnCollisionExit(Collision c) =>
         GetComponent<MeshRenderer>().material = original;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Bumper : MonoBehaviour
 {
-    void OnCollisionEnter(Collision c) =>
+    void OnCollisionEnter(Collision c)
+    {
         GetComponent<Animator>().Play("Activation");
+        GetComponent<AudioSource>().Play();
+    }
 }

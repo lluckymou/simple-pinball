@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     HingeJoint RightFlipper;
 
-    [Header("Ball launching mechanism")]
+    [Header("Plunger")]
     [SerializeField]
     Plunger Spring;
 
@@ -21,23 +21,32 @@ public class Movement : MonoBehaviour
     [SerializeField, Range(0, 50)]
     byte MinForce;
 
+    [SerializeField]
+    float IncreasingFactor;
+
     float force;
     bool activated;
 
     void Update()
     {
         // Right flipper
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.D))
+            RightFlipper.GetComponent<AudioSource>().Play();
+
+        if (Input.GetKey(KeyCode.D))
             RightFlipper.motor = RotateFlipper(1500);
 
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+        if (Input.GetKeyUp(KeyCode.D))
             RightFlipper.motor = RotateFlipper(-1500);
         
         // Left flipper
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.A))
+            LeftFlipper.GetComponent<AudioSource>().Play();
+
+        if (Input.GetKey(KeyCode.A))
             LeftFlipper.motor = RotateFlipper(-1500);
 
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        if (Input.GetKeyUp(KeyCode.A))
             LeftFlipper.motor = RotateFlipper(1500);
 
         // Launching mechanism
@@ -63,10 +72,11 @@ public class Movement : MonoBehaviour
     {
         if(!activated)
         {
-            force += 0.1f;
+            force += IncreasingFactor;
 
             if(force >= MaxForce)
             {
+                Spring.Fail();
                 activated = true;
                 force *= Random.Range(0.9f, 0.75f);
             }
