@@ -38,16 +38,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     float MultiplierIncrement;
 
-    [Header("UI Fields")]
-    [SerializeField]
-    TMP_Text ScoreText;
-
-    [SerializeField]
-    TMP_Text MultiplierText;
-
-    [SerializeField]
-    TMP_Text LivesText;
-
     float timeAlive = 0;
     float timeDead = 0;
 
@@ -60,7 +50,7 @@ public class Player : MonoBehaviour
             _score = value;
 
             // Updates UI text
-            ScoreText.text = _score.ToString();
+            GUIController.instance.Score.text = _score.ToString();
         }
     }
 
@@ -73,7 +63,7 @@ public class Player : MonoBehaviour
             _multiplier = value;
 
             // Updates UI text
-            MultiplierText.text = $"{_multiplier}x";
+            GUIController.instance.Multiplier.text = $"{_multiplier}x";
         }
     }
 
@@ -89,15 +79,15 @@ public class Player : MonoBehaviour
             Multiplier = 1;
 
             // Updates UI text
-            LivesText.text = _lives.ToString();
+            GUIController.instance.Lives.text = _lives.ToString();
         }
     }
 
     void Awake()
     {
-        ScoreText.text = _score.ToString();
-        MultiplierText.text = $"{_multiplier}x";
-        LivesText.text = _lives.ToString();
+        GUIController.instance.Score.text = _score.ToString();
+        GUIController.instance.Multiplier.text = $"{_multiplier}x";
+        GUIController.instance.Lives.text = _lives.ToString();
     }
 
     public void IncrementScore(int value) => Score += (int) (value * Multiplier);
@@ -125,11 +115,18 @@ public class Player : MonoBehaviour
 
             if(timeDead > 1)
             {
+                if(Lives < 0) return;
+
                 timeDead = 0;
                 Lives -= 1;
 
-                if(Lives < 0) GameOver();
-                else Instantiate(BallPrefab, Field.instance.Spawnpoint);
+                if(_lives < 0) 
+                {
+                    GUIController.instance.Lives.text = "0";
+                    GameOver();
+                }
+                else
+                    Instantiate(BallPrefab, Field.instance.Spawnpoint);
             }
         }       
     }
