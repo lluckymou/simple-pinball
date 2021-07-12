@@ -78,7 +78,7 @@ public class Movement : MonoBehaviour
             {
                 Spring.Fail();
                 activated = true;
-                force *= Random.Range(0.9f, 0.75f);
+                force *= Random.Range(0.7f, 0.5f);
             }
         }
     }

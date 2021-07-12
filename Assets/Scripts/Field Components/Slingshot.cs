@@ -15,6 +15,9 @@ public class Slingshot : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material = LitMaterial;
         GetComponent<AudioSource>().Play();
+
+        // Scoring
+        Player.instance.IncrementScore(50);
     }
 
     void OnCollisionExit(Collision c) =>

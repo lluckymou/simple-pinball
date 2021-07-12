@@ -8,5 +8,8 @@ public class Bumper : MonoBehaviour
     {
         GetComponent<Animator>().Play("Activation");
         GetComponent<AudioSource>().Play();
+
+        // Scoring
+        Player.instance.IncrementScore(50);
     }
 }
