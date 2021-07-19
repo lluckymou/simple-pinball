@@ -48,6 +48,13 @@ public class Player : MonoBehaviour
     float timeAlive = 0, timeDead = 0;
     int lastTicketIncrement = 0;
 
+    public Items[] Inventory = new Items[3];
+    public Items Equipped = Items.NoItem;
+    public Items NextItem
+    {
+        get => Inventory[0];
+    }
+
     int Score
     {
         get => _score;
@@ -78,6 +85,7 @@ public class Player : MonoBehaviour
 
             // Updates UI text
             GUIController.instance.Tickets.text = _tickets.ToString();
+            GUIController.instance.PlayMenuTickets.text = _tickets.ToString();
         }
     }
 
@@ -125,6 +133,16 @@ public class Player : MonoBehaviour
         Lives = 4;
         Score = 0;
     }
+
+    public void UseItem()
+    {
+        // If inventory is empty or an item is already being utilised
+        if(NextItem == Items.NoItem || Equipped != Items.NoItem) return;
+
+        // foreach(GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
+        //     ball.GetComponent<Ball>().
+    }
+
     void Update()
     {
         if(Field.instance.HasBall)

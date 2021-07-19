@@ -47,6 +47,8 @@ public class GUIController : MonoBehaviour
 
     public TMP_Text Tickets;
 
+    public TMP_Text PlayMenuTickets;
+
     public TMP_Text Lives;
 
     [Header("Other Labels/Fields")]
