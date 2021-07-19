@@ -15,5 +15,8 @@ public class Ball : MonoBehaviour
         }
 
         GetComponent<AudioSource>().Play();
+
+        ScoringObject so = c.gameObject.GetComponent<ScoringObject>();
+        if (so != null) Player.instance.IncrementScore(so.IncrementValue);
     }
 }

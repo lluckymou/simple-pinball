@@ -222,3 +222,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5fa37108f33564b87162f6c6b62873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kick: {fileID: 8300000, guid: a1098bb0cf527ce40aecddde3a244560, type: 3}
+  death: {fileID: 8300000, guid: 0233a0c9aeb84aa48b8ccbb6dea10278, type: 3}

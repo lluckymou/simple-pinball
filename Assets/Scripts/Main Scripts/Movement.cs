@@ -29,6 +29,8 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if(Player.instance.Lives < 0) return;
+
         // Right flipper
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             RightFlipper.GetComponent<AudioSource>().Play();

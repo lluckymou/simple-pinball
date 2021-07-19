@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     int _lives;
 
     [SerializeField]
+    int _tickets;
+
+    [SerializeField]
     float _multiplier;
 
     [Header("Multiplier Settings")]
@@ -38,8 +41,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     float MultiplierIncrement;
 
-    float timeAlive = 0;
-    float timeDead = 0;
+    [Header("Ticket Gathering Settings")]
+    [SerializeField]
+    int TicketEarningFactor;
+
+    float timeAlive = 0, timeDead = 0;
+    int lastTicketIncrement = 0;
 
     int Score
     {
@@ -49,8 +56,28 @@ public class Player : MonoBehaviour
             // Updates score variable
             _score = value;
 
+            if(_score == 0) lastTicketIncrement = 0; //reset condition
+            else if(_score > lastTicketIncrement+TicketEarningFactor)
+            {
+                lastTicketIncrement += TicketEarningFactor;
+                Tickets += 1;
+            }
+
             // Updates UI text
             GUIController.instance.Score.text = _score.ToString();
+        }
+    }
+
+    int Tickets
+    {
+        get => _tickets;
+        set
+        {
+            // Updates score variable
+            _tickets = value;
+
+            // Updates UI text
+            GUIController.instance.Tickets.text = _tickets.ToString();
         }
     }
 
@@ -67,7 +94,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    int Lives
+    public int Lives
     {
         get => _lives;
         set
@@ -87,13 +114,17 @@ public class Player : MonoBehaviour
     {
         GUIController.instance.Score.text = _score.ToString();
         GUIController.instance.Multiplier.text = $"{_multiplier}x";
-        GUIController.instance.Lives.text = _lives.ToString();
+        GUIController.instance.Lives.text = (_lives < 0 ? "0" : _lives.ToString());
+        GUIController.instance.Tickets.text = _tickets.ToString();
     }
 
     public void IncrementScore(int value) => Score += (int) (value * Multiplier);
 
-    void GameOver() {}
-
+    public void GameStart() 
+    {
+        Lives = 4;
+        Score = 0;
+    }
     void Update()
     {
         if(Field.instance.HasBall)
@@ -123,7 +154,7 @@ public class Player : MonoBehaviour
                 if(_lives < 0) 
                 {
                     GUIController.instance.Lives.text = "0";
-                    GameOver();
+                    GUIController.instance.StopGame(Score);
                 }
                 else
                     Instantiate(BallPrefab, Field.instance.Spawnpoint);

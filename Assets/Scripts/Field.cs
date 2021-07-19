@@ -50,6 +50,9 @@ public class Field : MonoBehaviour
         {
             BallsInField.Remove(c.GetComponent<Rigidbody>());
             Destroy(c.gameObject);
+
+            // Plays death sound
+            GetComponent<AudioSource>().Play();
         }
     }
 }
