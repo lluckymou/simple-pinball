@@ -99,7 +99,7 @@ public class PlayerGUI : MonoBehaviour
         string text = "";
 
         for (int i = 0; i < Leaderboard.Games.Count; i++)
-            text += $"#{(i+1).ToString("00")} | Score: {Leaderboard.Games[i].Score} | {Leaderboard.Games[i].Time}\n";
+            text += $"<i>#{(i+1).ToString("00")}</i> | Score: <b>{Leaderboard.Games[i].Score}</b> | <color=#666>{Leaderboard.Games[i].Time}</color>\n";
 
         HighScore.text = text;
     }

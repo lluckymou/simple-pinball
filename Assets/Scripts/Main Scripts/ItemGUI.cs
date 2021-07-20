@@ -52,19 +52,6 @@ public class ItemGUI : MonoBehaviour
     [SerializeField]
     AudioClip PurchaseFail;
 
-    [Header("Powerup Sprites")]
-    [SerializeField]
-    Sprite Fireball;
-    
-    [SerializeField]
-    Sprite WaterDroplet;
-    
-    [SerializeField]
-    Sprite LuckyCharm;
-    
-    [SerializeField]
-    Sprite CurseOfAnubis;
-
     void Awake()
     {
         RustyCrate.onClick.AddListener(() => Inventory.PurchaseItem(3, Crates.Rusty));
@@ -83,37 +70,16 @@ public class ItemGUI : MonoBehaviour
 
     public void PurchaseFailSound() => UISpeaker.PlayOneShot(PurchaseFail);
 
-    void LoadItem(Items item, List<Image> itemSlot)
+    void LoadItem(Item item, List<Image> itemSlot)
     {
-        if(item == Items.NoItem)
+        if(item.Icon == null)
             foreach(Image i in itemSlot)
                 i.gameObject.SetActive(false);
 
         else foreach(Image i in itemSlot)
         {
             i.gameObject.SetActive(true);
-            i.sprite = ItemSprite(item);
-        }
-    }
-
-    Sprite ItemSprite(Items item)
-    {
-        switch(item)
-        {
-            case Items.Fireball:
-                return Fireball;
-            
-            case Items.WaterDroplet:
-                return WaterDroplet;
-            
-            case Items.LuckyCharm:
-                return LuckyCharm;
-            
-            case Items.CurseOfAnubis:
-                return CurseOfAnubis;
-        
-            default: //case Items.NoItem:
-                return null;
+            i.sprite = item.Icon;
         }
     }
 }

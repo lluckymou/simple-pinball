@@ -45,7 +45,7 @@ public class Field : MonoBehaviour
     [HideInInspector]
     public List<Rigidbody> BallsInField = new List<Rigidbody>();
 
-    public void ActivatePowerup() => 
+    public void PowerupSound() => 
         GetComponent<AudioSource>().PlayOneShot(Powerup);
 
     void OnTriggerEnter(Collider c)

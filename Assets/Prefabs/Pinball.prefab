@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5fa37108f33564b87162f6c6b62873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PoweredUp: {fileID: 2100000, guid: 3a8e95b17fca8cc438a1dd9dbcb1678a, type: 2}
   Fireball: {fileID: 2100000, guid: 1c0b481e6120f6343911dfad778e9679, type: 2}
   WaterDroplet: {fileID: 2100000, guid: a873af0d5828fb844ac2a2cb6399b7f7, type: 2}
   LuckyCharm: {fileID: 2100000, guid: 84bf841e6f26b504c8add9ca299b9d11, type: 2}

@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
 
                 timeDead = 0;
                 Lives -= 1;
-                Inventory.Equipped = Items.NoItem;
+                Inventory.Unequip();
 
                 if(_lives < 0) 
                 {

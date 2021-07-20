@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 public static class Inventory
 {
-    public static Items[] Slots = new Items[3] { Items.NoItem, Items.NoItem, Items.NoItem };
-    public static Items Equipped = Items.NoItem;
-    public static Items NextItem
+    public static Item[] Slots = new Item[3] { Items.NoItem, Items.NoItem, Items.NoItem };
+    public static Item Equipped = Items.NoItem;
+    public static Item NextItem
     {
         get => Slots[0];
     }
 
-    public static void GiveItem(Items item)
+    public static void GiveItem(Item item)
     {
         // Checks where to add the item (from the first to the last slot)
         int position = -1;
@@ -35,15 +35,22 @@ public static class Inventory
 
     public static void PurchaseItem(int price, Crates rarity)
     {
+        
+        // Can the item be afforded
         #if UNITY_EDITOR
-            if(ItemGUI.instance.FreeShops)
+            if(Player.instance.Tickets < price && !ItemGUI.instance.FreeShops)
+        #else
+            if(Player.instance.Tickets < price)
         #endif
-                // Can the item be afforded
-                if(Player.instance.Tickets < price)
-                {
-                    ItemGUI.instance.PurchaseFailSound();
-                    return;
-                }
+        {
+            ItemGUI.instance.PurchaseFailSound();
+            return;
+        }
+
+        #if UNITY_EDITOR
+            if(!ItemGUI.instance.FreeShops)
+        #endif
+                Player.instance.Tickets -= price;
                 
         // Checks where to add the item (from the first to the last slot)
         int position = -1;
@@ -68,6 +75,12 @@ public static class Inventory
         ItemGUI.instance.LoadItems();
     }
 
+    public static void Unequip()
+    {
+        Equipped.OnUnequip();
+        Equipped = Items.NoItem;
+    }
+
     public static void UseItem()
     {
         // If there are no balls in the field to apply the item to
@@ -83,24 +96,35 @@ public static class Inventory
         Slots[2] = Items.NoItem;
 
         // Activates powerup
-        foreach(Rigidbody ball in Field.instance.BallsInField)
-            ball.GetComponent<Ball>().ActivatePowerup(Equipped);
+        // Method called for all items on activation
+        if(Equipped.HasTrail)
+            foreach(Rigidbody ball in Field.instance.BallsInField)
+            {
+                ball.GetComponent<TrailRenderer>().enabled = true;
+                ball.GetComponent<TrailRenderer>().material = Equipped.TrailMaterial;
+            }
+
+        if(Equipped.ChangeBallMaterial)
+            foreach(Rigidbody ball in Field.instance.BallsInField)
+                ball.GetComponent<MeshRenderer>().material = Equipped.PoweredUpMaterial;
+
+        Equipped.OnEquip();
 
         // Updates item UI
         ItemGUI.instance.LoadItems();
 
         // Plays sound from the board
-        Field.instance.ActivatePowerup();
+        Field.instance.PowerupSound();
     }
 
     struct ItemIncidence
     {
-        public Items Item;
-        public int Incidence;
+        public Item item;
+        public int incidence;
     }
 
     // Incidence-based random item generator
-    static Items GenerateItemFromRarity(Crates rarity)
+    static Item GenerateItemFromRarity(Crates rarity)
     {
         List<ItemIncidence> lootTable = new List<ItemIncidence>();
 
@@ -110,28 +134,28 @@ public static class Inventory
             case Crates.Rusty:
                 lootTable = new List<ItemIncidence>()
                 {
-                    new ItemIncidence(){ Item = Items.Fireball, Incidence = 100 },
-                    new ItemIncidence(){ Item = Items.WaterDroplet, Incidence = 100 },
-                    new ItemIncidence(){ Item = Items.LuckyCharm, Incidence = 100 },
-                    new ItemIncidence(){ Item = Items.CurseOfAnubis, Incidence = 10 },
+                    new ItemIncidence(){ item = Items.Fireball, incidence = 100 },
+                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 100 },
+                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 100 },
+                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 10 },
                 };
                 break;
             case Crates.Brass:
                 lootTable = new List<ItemIncidence>()
                 {
-                    new ItemIncidence(){ Item = Items.Fireball, Incidence = 50 },
-                    new ItemIncidence(){ Item = Items.WaterDroplet, Incidence = 50 },
-                    new ItemIncidence(){ Item = Items.LuckyCharm, Incidence = 100 },
-                    new ItemIncidence(){ Item = Items.CurseOfAnubis, Incidence = 100 },
+                    new ItemIncidence(){ item = Items.Fireball, incidence = 50 },
+                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 50 },
+                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 100 },
+                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 100 },
                 };
                 break;
             case Crates.Golden:
                 lootTable = new List<ItemIncidence>()
                 {
-                    new ItemIncidence(){ Item = Items.Fireball, Incidence = 10 },
-                    new ItemIncidence(){ Item = Items.WaterDroplet, Incidence = 10 },
-                    new ItemIncidence(){ Item = Items.LuckyCharm, Incidence = 10 },
-                    new ItemIncidence(){ Item = Items.CurseOfAnubis, Incidence = 200 },
+                    new ItemIncidence(){ item = Items.Fireball, incidence = 10 },
+                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 10 },
+                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 10 },
+                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 200 },
                 };
                 break;
         }
@@ -141,8 +165,8 @@ public static class Inventory
         int totalIncidence = 0;
         for (int i = 0; i < lootTable.Count; i++)
         {
-            totalIncidence += lootTable[i].Incidence;
-            lootTable[i] = new ItemIncidence(){ Item = lootTable[i].Item, Incidence = totalIncidence };
+            totalIncidence += lootTable[i].incidence;
+            lootTable[i] = new ItemIncidence(){ item = lootTable[i].item, incidence = totalIncidence };
         }
 
         // Chooses an item inside given lootTable's incidence range
@@ -154,11 +178,11 @@ public static class Inventory
             int lastInterval = 0;
 
             // If it's not the first entry check for the previous entry
-            if(i > 0) lastInterval = lootTable[i-1].Incidence;
+            if(i > 0) lastInterval = lootTable[i-1].incidence;
 
             // Checks if the generated number is inside the interval
-            if(itemChosen >= lastInterval && itemChosen < lootTable[i].Incidence)
-                return lootTable[i].Item;
+            if(itemChosen >= lastInterval && itemChosen < lootTable[i].incidence)
+                return lootTable[i].item;
         }
 
         return Items.NoItem;
