@@ -17,6 +17,11 @@ public class ItemGUI : MonoBehaviour
         }
     }
     
+    #if UNITY_EDITOR
+        [Header("Debug (editor only)")]
+        public bool FreeShops;
+    #endif
+
     [Header("Item Shop")]
     [SerializeField]
     Button RustyCrate;
