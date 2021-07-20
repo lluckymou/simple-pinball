@@ -22,4 +22,6 @@ public class Ball : MonoBehaviour
         ScoringObject so = c.gameObject.GetComponent<ScoringObject>();
         if (so != null) Player.instance.IncrementScore(so.IncrementValue);
     }
+
+    void OnCollisionExit(Collision c) => Inventory.Equipped.OnCollision();
 }

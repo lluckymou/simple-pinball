@@ -2233,7 +2233,7 @@ GameObject:
   - component: {fileID: 570434427}
   - component: {fileID: 570434426}
   m_Layer: 5
-  m_Name: Good RNG
+  m_Name: Golden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4990,7 +4990,7 @@ GameObject:
   - component: {fileID: 1414968721}
   - component: {fileID: 1414968720}
   m_Layer: 5
-  m_Name: Medium RNG
+  m_Name: Rusty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7174,9 +7174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1b0ffe4460da842b5e9d0f71e7933b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FreeShops: 1
-  RustyCrate: {fileID: 2101881536}
-  BrassCrate: {fileID: 1414968720}
+  FreeShops: 0
+  ClearInventory: 0
+  GiveItem: 0
+  RustyCrate: {fileID: 1414968720}
+  BrassCrate: {fileID: 2101881536}
   GoldenCrate: {fileID: 570434426}
   FirstItem:
   - {fileID: 1924683990}
@@ -8664,7 +8666,7 @@ GameObject:
   - component: {fileID: 2101881537}
   - component: {fileID: 2101881536}
   m_Layer: 5
-  m_Name: Bad RNG
+  m_Name: Brass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

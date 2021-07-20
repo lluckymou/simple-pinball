@@ -47,4 +47,5 @@ MonoBehaviour:
   Description: 
   Icon: {fileID: 21300000, guid: 9d3322b6966ef1640b662b01cf171692, type: 3}
   TrailMaterial: {fileID: 2100000, guid: a873af0d5828fb844ac2a2cb6399b7f7, type: 2}
-  PoweredUpMaterial: {fileID: 0}
+  CustomPhysicMaterial: {fileID: 13400000, guid: ac16538eabd3c0a45be88095928bf24f, type: 2}
+  PoweredUpMaterial: {fileID: 2100000, guid: 3ac3cbe3771937349bff66e8198e45a0, type: 2}

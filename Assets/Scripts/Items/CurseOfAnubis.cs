@@ -16,12 +16,27 @@ public class CurseOfAnubis : Item
 
     [Header("Ball Material Settings")]
     new Material PoweredUpMaterial;
-
-    public override void OnEquip() {}
     
-    public override void OnUnequip() {}
+    [Header("Physic Material Settings")]
+    new Material CustomPhysicMaterial;
+
+    public override void OnEquip() 
+    {
+        Player.instance.Lives = 0;
+        Player.instance.Score /= 2;
+        Player.instance.Multiplier += 2.5f;
+
+        SceneObjects.instance.MainLight.intensity = 0;
+    }
+    
+    public override void OnUnequip()
+    {
+        SceneObjects.instance.MainLight.intensity = 0.8f;
+    }
 
     public override void OnScoring() {}
 
     public override void OnDeath() {}
+
+    public override void OnCollision() {}
 }

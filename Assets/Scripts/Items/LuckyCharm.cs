@@ -16,6 +16,9 @@ public class LuckyCharm : Item
 
     [Header("Ball Material Settings")]
     new Material PoweredUpMaterial;
+    
+    [Header("Physic Material Settings")]
+    new Material CustomPhysicMaterial;
 
     public override void OnEquip() {}
     
@@ -24,4 +27,9 @@ public class LuckyCharm : Item
     public override void OnScoring() {}
 
     public override void OnDeath() {}
+
+    public override void OnCollision()
+    {
+        Player.instance.Multiplier = Random.Range(0.1f, 3.0f);
+    }
 }

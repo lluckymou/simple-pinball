@@ -97,16 +97,21 @@ public static class Inventory
 
         // Activates powerup
         // Method called for all items on activation
-        if(Equipped.HasTrail)
-            foreach(Rigidbody ball in Field.instance.BallsInField)
+        
+        foreach(Rigidbody ball in Field.instance.BallsInField)
+        {
+            if(Equipped.HasTrail)
             {
                 ball.GetComponent<TrailRenderer>().enabled = true;
                 ball.GetComponent<TrailRenderer>().material = Equipped.TrailMaterial;
             }
 
-        if(Equipped.ChangeBallMaterial)
-            foreach(Rigidbody ball in Field.instance.BallsInField)
+            if(Equipped.ChangeBallMaterial)
                 ball.GetComponent<MeshRenderer>().material = Equipped.PoweredUpMaterial;
+
+            if(Equipped.HasCustomPhysicMaterial)
+                ball.GetComponent<SphereCollider>().material = Equipped.CustomPhysicMaterial;
+        }
 
         Equipped.OnEquip();
 
@@ -115,6 +120,16 @@ public static class Inventory
 
         // Plays sound from the board
         Field.instance.PowerupSound();
+    }
+
+    public static void Clear()
+    {
+        // Unequips current item and resets the item queue
+        Unequip();
+        Slots = new Item[3] { Items.NoItem, Items.NoItem, Items.NoItem };
+
+        // Updates item UI
+        ItemGUI.instance.LoadItems();
     }
 
     struct ItemIncidence
@@ -134,28 +149,28 @@ public static class Inventory
             case Crates.Rusty:
                 lootTable = new List<ItemIncidence>()
                 {
-                    new ItemIncidence(){ item = Items.Fireball, incidence = 100 },
-                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 100 },
-                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 100 },
-                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 10 },
+                    new ItemIncidence(){ item = Items.Fireball, incidence = 1 },
+                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 1 },
+                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 1 },
+                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 1 },
                 };
                 break;
             case Crates.Brass:
                 lootTable = new List<ItemIncidence>()
                 {
-                    new ItemIncidence(){ item = Items.Fireball, incidence = 50 },
-                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 50 },
-                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 100 },
-                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 100 },
+                    new ItemIncidence(){ item = Items.Fireball, incidence = 1 },
+                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 1 },
+                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 1 },
+                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 1 },
                 };
                 break;
             case Crates.Golden:
                 lootTable = new List<ItemIncidence>()
                 {
-                    new ItemIncidence(){ item = Items.Fireball, incidence = 10 },
-                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 10 },
-                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 10 },
-                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 200 },
+                    new ItemIncidence(){ item = Items.Fireball, incidence = 1 },
+                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 1 },
+                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 1 },
+                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 1 },
                 };
                 break;
         }

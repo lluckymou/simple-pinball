@@ -48,11 +48,13 @@ public class Player : MonoBehaviour
     float timeAlive = 0, timeDead = 0;
     int lastTicketIncrement = 0;
 
-    int Score
+    public int Score
     {
         get => _score;
         set
         {
+            Inventory.Equipped.OnScoring();
+
             // Updates score variable
             _score = value;
 
@@ -82,7 +84,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    float Multiplier
+    public float Multiplier
     {
         get => _multiplier;
         set
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour
             _multiplier = value;
 
             // Updates UI text
-            PlayerGUI.instance.Multiplier.text = $"{_multiplier}x";
+            PlayerGUI.instance.Multiplier.text = $"{_multiplier.ToString("0.0")}x";
         }
     }
 
@@ -154,6 +156,7 @@ public class Player : MonoBehaviour
 
                 timeDead = 0;
                 Lives -= 1;
+                Inventory.Equipped.OnDeath();
                 Inventory.Unequip();
 
                 if(_lives < 0) 

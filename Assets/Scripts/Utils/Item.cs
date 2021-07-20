@@ -15,6 +15,13 @@ public abstract class Item : MonoBehaviour
 
     public Material TrailMaterial;
 
+    public bool HasCustomPhysicMaterial
+    {
+        get => (CustomPhysicMaterial != null);
+    }
+
+    public PhysicMaterial CustomPhysicMaterial;
+
     public bool ChangeBallMaterial
     {
         get => (PoweredUpMaterial != null);
@@ -29,4 +36,6 @@ public abstract class Item : MonoBehaviour
     public abstract void OnScoring();
 
     public abstract void OnDeath();
+
+    public abstract void OnCollision();
 }

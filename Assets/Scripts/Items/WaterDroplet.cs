@@ -16,6 +16,9 @@ public class WaterDroplet : Item
 
     [Header("Ball Material Settings")]
     new Material PoweredUpMaterial;
+    
+    [Header("Physic Material Settings")]
+    new Material CustomPhysicMaterial;
 
     public override void OnEquip() {}
     
@@ -24,4 +27,6 @@ public class WaterDroplet : Item
     public override void OnScoring() {}
 
     public override void OnDeath() {}
+
+    public override void OnCollision() {}
 }

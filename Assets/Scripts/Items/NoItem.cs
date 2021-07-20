@@ -8,15 +8,6 @@ public class NoItem : Item
     new string Name;
     new string Description;
 
-    [Header("UI Sprite")]
-    new Sprite Icon;
-
-    [Header("Trail Settings")]
-    new Material TrailMaterial;
-
-    [Header("Ball Material Settings")]
-    new Material PoweredUpMaterial;
-
     public override void OnEquip() {}
     
     public override void OnUnequip() {}
@@ -24,4 +15,6 @@ public class NoItem : Item
     public override void OnScoring() {}
 
     public override void OnDeath() {}
+
+    public override void OnCollision() {}
 }

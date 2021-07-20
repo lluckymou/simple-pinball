@@ -3,6 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+#if UNITY_EDITOR
+enum ItemGivePanel
+{
+    Nothing,
+    Fireball,
+    WaterDroplet,
+    LuckyCharm,
+    CurseOfAnubis
+}
+#endif
+
 public class ItemGUI : MonoBehaviour
 {
     // Same-scene "singleton" pattern 
@@ -20,6 +31,12 @@ public class ItemGUI : MonoBehaviour
     #if UNITY_EDITOR
         [Header("Debug (editor only)")]
         public bool FreeShops;
+
+        [SerializeField]
+        bool ClearInventory;
+
+        [SerializeField] 
+        ItemGivePanel GiveItem;
     #endif
 
     [Header("Item Shop")]
@@ -52,8 +69,36 @@ public class ItemGUI : MonoBehaviour
     [SerializeField]
     AudioClip PurchaseFail;
 
+    #if UNITY_EDITOR
+        void Update()
+        {
+            if(ClearInventory)
+            {
+                Inventory.Clear();
+                ClearInventory = false;
+            }
+
+            if(GiveItem != ItemGivePanel.Nothing)
+            {
+                switch(GiveItem)
+                {
+                    case ItemGivePanel.Fireball: Inventory.GiveItem(Items.Fireball); break;
+                    case ItemGivePanel.WaterDroplet: Inventory.GiveItem(Items.WaterDroplet); break;
+                    case ItemGivePanel.LuckyCharm: Inventory.GiveItem(Items.LuckyCharm); break;
+                    case ItemGivePanel.CurseOfAnubis: Inventory.GiveItem(Items.CurseOfAnubis); break;
+                }
+
+                GiveItem = ItemGivePanel.Nothing;
+            }
+        }
+    #endif
+
     void Awake()
     {
+        #if UNITY_EDITOR
+            GiveItem = ItemGivePanel.Nothing;
+        #endif
+
         RustyCrate.onClick.AddListener(() => Inventory.PurchaseItem(3, Crates.Rusty));
         BrassCrate.onClick.AddListener(() => Inventory.PurchaseItem(6, Crates.Brass));
         GoldenCrate.onClick.AddListener(() => Inventory.PurchaseItem(10, Crates.Golden));
