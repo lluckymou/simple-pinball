@@ -223,6 +223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5fa37108f33564b87162f6c6b62873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fireball: {fileID: 2100000, guid: 1c0b481e6120f6343911dfad778e9679, type: 2}
+  WaterDroplet: {fileID: 2100000, guid: a873af0d5828fb844ac2a2cb6399b7f7, type: 2}
+  LuckyCharm: {fileID: 2100000, guid: 84bf841e6f26b504c8add9ca299b9d11, type: 2}
+  CurseOfAnubis: {fileID: 2100000, guid: 723b2051f9ff69b41833ecf1328b9361, type: 2}
 --- !u!96 &9027054811369906688
 TrailRenderer:
   serializedVersion: 2
@@ -243,7 +247,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 77e05e6d1ba65284590fe224f2e97ee3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

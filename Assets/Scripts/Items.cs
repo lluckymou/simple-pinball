@@ -4,5 +4,6 @@ public enum Items
     Fireball,
     WaterDroplet,
     LuckyCharm,
-    AnubisCurse
+    CurseOfAnubis,
+    AngelWings // Unused (yet)
 }

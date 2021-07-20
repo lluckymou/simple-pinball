@@ -48,13 +48,6 @@ public class Player : MonoBehaviour
     float timeAlive = 0, timeDead = 0;
     int lastTicketIncrement = 0;
 
-    public Items[] Inventory = new Items[3];
-    public Items Equipped = Items.NoItem;
-    public Items NextItem
-    {
-        get => Inventory[0];
-    }
-
     int Score
     {
         get => _score;
@@ -71,11 +64,11 @@ public class Player : MonoBehaviour
             }
 
             // Updates UI text
-            GUIController.instance.Score.text = _score.ToString();
+            PlayerGUI.instance.Score.text = _score.ToString();
         }
     }
 
-    int Tickets
+    public int Tickets
     {
         get => _tickets;
         set
@@ -84,8 +77,8 @@ public class Player : MonoBehaviour
             _tickets = value;
 
             // Updates UI text
-            GUIController.instance.Tickets.text = _tickets.ToString();
-            GUIController.instance.PlayMenuTickets.text = _tickets.ToString();
+            PlayerGUI.instance.Tickets.text = _tickets.ToString();
+            PlayerGUI.instance.PlayMenuTickets.text = _tickets.ToString();
         }
     }
 
@@ -98,7 +91,7 @@ public class Player : MonoBehaviour
             _multiplier = value;
 
             // Updates UI text
-            GUIController.instance.Multiplier.text = $"{_multiplier}x";
+            PlayerGUI.instance.Multiplier.text = $"{_multiplier}x";
         }
     }
 
@@ -114,16 +107,18 @@ public class Player : MonoBehaviour
             Multiplier = 1;
 
             // Updates UI text
-            GUIController.instance.Lives.text = _lives.ToString();
+            PlayerGUI.instance.Lives.text = _lives.ToString();
         }
     }
 
     void Awake()
     {
-        GUIController.instance.Score.text = _score.ToString();
-        GUIController.instance.Multiplier.text = $"{_multiplier}x";
-        GUIController.instance.Lives.text = (_lives < 0 ? "0" : _lives.ToString());
-        GUIController.instance.Tickets.text = _tickets.ToString();
+        PlayerGUI.instance.Score.text = _score.ToString();
+        PlayerGUI.instance.Multiplier.text = $"{_multiplier}x";
+        PlayerGUI.instance.Lives.text = (_lives < 0 ? "0" : _lives.ToString());
+        PlayerGUI.instance.Tickets.text = _tickets.ToString();
+
+        ItemGUI.instance.LoadItems();
     }
 
     public void IncrementScore(int value) => Score += (int) (value * Multiplier);
@@ -132,15 +127,6 @@ public class Player : MonoBehaviour
     {
         Lives = 4;
         Score = 0;
-    }
-
-    public void UseItem()
-    {
-        // If inventory is empty or an item is already being utilised
-        if(NextItem == Items.NoItem || Equipped != Items.NoItem) return;
-
-        // foreach(GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
-        //     ball.GetComponent<Ball>().
     }
 
     void Update()
@@ -168,11 +154,12 @@ public class Player : MonoBehaviour
 
                 timeDead = 0;
                 Lives -= 1;
+                Inventory.Equipped = Items.NoItem;
 
                 if(_lives < 0) 
                 {
-                    GUIController.instance.Lives.text = "0";
-                    GUIController.instance.StopGame(Score);
+                    PlayerGUI.instance.Lives.text = "0";
+                    PlayerGUI.instance.StopGame(Score);
                 }
                 else
                     Instantiate(BallPrefab, Field.instance.Spawnpoint);

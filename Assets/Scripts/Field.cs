@@ -18,6 +18,13 @@ public class Field : MonoBehaviour
 
     public Transform Spawnpoint;
 
+    [Header("Sounds")]
+    [SerializeField]
+    AudioClip Death;
+
+    [SerializeField]
+    AudioClip Powerup;
+
     public bool HasBall
     {
         get => BallsInField.Count > 0;
@@ -36,7 +43,10 @@ public class Field : MonoBehaviour
     }
 
     [HideInInspector]
-    List<Rigidbody> BallsInField = new List<Rigidbody>();
+    public List<Rigidbody> BallsInField = new List<Rigidbody>();
+
+    public void ActivatePowerup() => 
+        GetComponent<AudioSource>().PlayOneShot(Powerup);
 
     void OnTriggerEnter(Collider c)
     {
@@ -52,7 +62,7 @@ public class Field : MonoBehaviour
             Destroy(c.gameObject);
 
             // Plays death sound
-            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().PlayOneShot(Death);
         }
     }
 }

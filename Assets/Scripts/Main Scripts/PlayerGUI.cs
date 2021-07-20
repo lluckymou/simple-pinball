@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GUIController : MonoBehaviour
+public class PlayerGUI : MonoBehaviour
 {
     // Same-scene "singleton" pattern 
-    private static GUIController _instance;
-    public static GUIController instance
+    private static PlayerGUI _instance;
+    public static PlayerGUI instance
     {
         get
         {
             if (!_instance)
-                _instance = FindObjectOfType<GUIController>();
+                _instance = FindObjectOfType<PlayerGUI>();
             return _instance;
         }
     }

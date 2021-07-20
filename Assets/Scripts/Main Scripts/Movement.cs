@@ -60,6 +60,9 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
             ReleaseForce();
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.LeftApple))
+            Inventory.UseItem();
     }
 
     JointMotor RotateFlipper(float velocity, float force = 150)
