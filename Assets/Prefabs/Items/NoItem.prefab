@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: No item selected
-  Description: Play a few games and get yourself some items before trying to read
-    what it does.
+  Description: Play a few games and get yourself an item before trying to read what
+    it does.
   Icon: {fileID: 0}
   TrailMaterial: {fileID: 0}
   CustomPhysicMaterial: {fileID: 0}

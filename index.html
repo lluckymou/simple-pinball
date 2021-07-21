@@ -1,5 +1,40 @@
-<script>
-    window.onload = function() {
-        window.location.href = "Game/index.html";
-    }
-</script>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Simple Pinball</title>
+    <style>
+        body {
+            background-color: #326767;
+        }
+
+        #unity-canvas {
+            background: #326767;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            aspect-ratio: 1 / 1;
+            height: 90% !important;
+        }
+    </style>
+  </head>
+  <body style="text-align: center">
+    <canvas id="unity-canvas"></canvas>
+    <script src="Game/Build/Game.loader.js"></script>
+    <script>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Game/Build/Game.data",
+        frameworkUrl: "Game/Build/Game.framework.js",
+        codeUrl: "Game/Build/Game.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "simple-pinball",
+        productVersion: "0.1",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      });
+    </script>
+  </body>
+</html>
