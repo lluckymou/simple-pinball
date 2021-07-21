@@ -23,7 +23,7 @@ public class CameraFlip : Item
     public override void OnEquip()
     {
         SceneObjects.instance.MainCamera.transform.rotation = Quaternion.Euler(45, 0, 180);
-        Player.instance.Multiplier += 0.5f;
+        Player.instance.Multiplier += 1.5f;
     }
     
     public override void OnUnequip()
