@@ -7,8 +7,8 @@ PhysicMaterial:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CurseOfAnubis
-  dynamicFriction: 0.2
+  dynamicFriction: 0.15
   staticFriction: 0
-  bounciness: 0.5
+  bounciness: 0.8
   frictionCombine: 1
   bounceCombine: 0

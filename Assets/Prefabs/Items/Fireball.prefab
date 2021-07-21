@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2411056563ab1438177343b5456cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
+  Name: Fireball
+  Description: Bouncy fireball... Reminiscent of that plummer game.
   Icon: {fileID: 21300000, guid: de71a23298b12af43849ed33b088e287, type: 3}
   TrailMaterial: {fileID: 2100000, guid: 1c0b481e6120f6343911dfad778e9679, type: 2}
   CustomPhysicMaterial: {fileID: 13400000, guid: 48429a4808089ce40947fece86073dff, type: 2}

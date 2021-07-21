@@ -29,6 +29,9 @@ public class PlayerGUI : MonoBehaviour
     [SerializeField]
     Button PlayAgain;
 
+    [SerializeField]
+    Button Reset;
+
     [Header("Panels")]
     [SerializeField]
     GameObject PlayPanel;
@@ -63,6 +66,13 @@ public class PlayerGUI : MonoBehaviour
 
         Play.onClick.AddListener(PlayGame);
         PlayAgain.onClick.AddListener(OpenPlayPanel);
+        Reset.onClick.AddListener(ResetGame);
+    }
+
+    void ResetGame()
+    {
+        Player.instance.Lives = 0;
+        Field.instance.EliminateBalls();
     }
 
     void OpenPlayPanel()

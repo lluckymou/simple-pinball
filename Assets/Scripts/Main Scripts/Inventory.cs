@@ -97,7 +97,6 @@ public static class Inventory
 
         // Activates powerup
         // Method called for all items on activation
-        
         foreach(Rigidbody ball in Field.instance.BallsInField)
         {
             if(Equipped.HasTrail)
@@ -153,6 +152,14 @@ public static class Inventory
                     new ItemIncidence(){ item = Items.WaterDroplet, incidence = 1 },
                     new ItemIncidence(){ item = Items.LuckyCharm, incidence = 1 },
                     new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 1 },
+                    new ItemIncidence(){ item = Items.AngelWings, incidence = 1 },
+                    new ItemIncidence(){ item = Items.CameraFlip, incidence = 1 },
+                    new ItemIncidence(){ item = Items.ExtraBall, incidence = 1 },
+                    new ItemIncidence(){ item = Items.HealthBonus, incidence = 1 },
+                    new ItemIncidence(){ item = Items.PingPong, incidence = 1 },
+                    new ItemIncidence(){ item = Items.Rock, incidence = 1 },
+                    new ItemIncidence(){ item = Items.TennisBall, incidence = 1 },
+                    new ItemIncidence(){ item = Items.TicketPrize, incidence = 1 }
                 };
                 break;
             case Crates.Brass:
@@ -162,6 +169,14 @@ public static class Inventory
                     new ItemIncidence(){ item = Items.WaterDroplet, incidence = 1 },
                     new ItemIncidence(){ item = Items.LuckyCharm, incidence = 1 },
                     new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 1 },
+                    new ItemIncidence(){ item = Items.AngelWings, incidence = 1 },
+                    new ItemIncidence(){ item = Items.CameraFlip, incidence = 1 },
+                    new ItemIncidence(){ item = Items.ExtraBall, incidence = 1 },
+                    new ItemIncidence(){ item = Items.HealthBonus, incidence = 1 },
+                    new ItemIncidence(){ item = Items.PingPong, incidence = 1 },
+                    new ItemIncidence(){ item = Items.Rock, incidence = 1 },
+                    new ItemIncidence(){ item = Items.TennisBall, incidence = 1 },
+                    new ItemIncidence(){ item = Items.TicketPrize, incidence = 1 }
                 };
                 break;
             case Crates.Golden:
@@ -171,6 +186,14 @@ public static class Inventory
                     new ItemIncidence(){ item = Items.WaterDroplet, incidence = 1 },
                     new ItemIncidence(){ item = Items.LuckyCharm, incidence = 1 },
                     new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 1 },
+                    new ItemIncidence(){ item = Items.AngelWings, incidence = 1 },
+                    new ItemIncidence(){ item = Items.CameraFlip, incidence = 1 },
+                    new ItemIncidence(){ item = Items.ExtraBall, incidence = 1 },
+                    new ItemIncidence(){ item = Items.HealthBonus, incidence = 1 },
+                    new ItemIncidence(){ item = Items.PingPong, incidence = 1 },
+                    new ItemIncidence(){ item = Items.Rock, incidence = 1 },
+                    new ItemIncidence(){ item = Items.TennisBall, incidence = 1 },
+                    new ItemIncidence(){ item = Items.TicketPrize, incidence = 1 }
                 };
                 break;
         }

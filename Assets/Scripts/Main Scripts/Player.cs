@@ -131,6 +131,8 @@ public class Player : MonoBehaviour
         Score = 0;
     }
 
+    public void SpawnBall() => Instantiate(BallPrefab, Field.instance.Spawnpoint);
+
     void Update()
     {
         if(Field.instance.HasBall)
@@ -164,8 +166,7 @@ public class Player : MonoBehaviour
                     PlayerGUI.instance.Lives.text = "0";
                     PlayerGUI.instance.StopGame(Score);
                 }
-                else
-                    Instantiate(BallPrefab, Field.instance.Spawnpoint);
+                else SpawnBall();
             }
         }       
     }

@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541327e2c9120d5419d665bdc4b7fe67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
+  Name: Water Droplet
+  Description: Just a slow................... water droplet.
   Icon: {fileID: 21300000, guid: 9d3322b6966ef1640b662b01cf171692, type: 3}
   TrailMaterial: {fileID: 2100000, guid: a873af0d5828fb844ac2a2cb6399b7f7, type: 2}
   CustomPhysicMaterial: {fileID: 13400000, guid: ac16538eabd3c0a45be88095928bf24f, type: 2}

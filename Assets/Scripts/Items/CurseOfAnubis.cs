@@ -26,7 +26,7 @@ public class CurseOfAnubis : Item
         Player.instance.Score /= 2;
         Player.instance.Multiplier += 2.5f;
 
-        SceneObjects.instance.MainLight.intensity = 0;
+        SceneObjects.instance.MainLight.intensity = 0.25f;
     }
     
     public override void OnUnequip()

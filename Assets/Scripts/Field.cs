@@ -48,6 +48,18 @@ public class Field : MonoBehaviour
     public void PowerupSound() => 
         GetComponent<AudioSource>().PlayOneShot(Powerup);
 
+    public void EliminateBalls()
+    {
+        for (int i = BallsInField.Count - 1; i >= 0; i--)
+        {
+            Rigidbody rb = BallsInField[i];
+            BallsInField.RemoveAt(i);
+            GameObject.Destroy(rb.gameObject);
+        }
+
+        Plunger.instance.ObjectsInSpring = new List<Rigidbody>();
+    }
+
     void OnTriggerEnter(Collider c)
     {
         if (c.tag == "Ball")

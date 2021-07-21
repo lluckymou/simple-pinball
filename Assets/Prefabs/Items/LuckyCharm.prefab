@@ -43,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca3a164fbb2fad4db1ef490c39d03bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
+  Name: Lucky Charm
+  Description: Random multipliers everytime a ball hits something.
   Icon: {fileID: 21300000, guid: ebe1db584719c9441912ade4547ac83f, type: 3}
   TrailMaterial: {fileID: 2100000, guid: 84bf841e6f26b504c8add9ca299b9d11, type: 2}
+  CustomPhysicMaterial: {fileID: 0}
   PoweredUpMaterial: {fileID: 0}

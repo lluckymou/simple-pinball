@@ -5,16 +5,29 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
+    // Same-scene "singleton" pattern 
+    private static Movement _instance;
+    public static Movement instance
+    {
+        get
+        {
+            if (!_instance)
+                _instance = FindObjectOfType<Movement>();
+            return _instance;
+        }
+    }
+    
     [Header("Flippers")]
     [SerializeField]
     HingeJoint LeftFlipper;
+    
     [SerializeField]
     HingeJoint RightFlipper;
 
-    [Header("Plunger")]
-    [SerializeField]
-    Plunger Spring;
+    public int FlipperMotorVelocity;
+    public int FlipperMotorForce;
 
+    [Header("Plunger")]
     [SerializeField, Range(0, 50)]
     byte MaxForce;
     
@@ -36,24 +49,24 @@ public class Movement : MonoBehaviour
             RightFlipper.GetComponent<AudioSource>().Play();
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            RightFlipper.motor = RotateFlipper(1500);
+            RightFlipper.motor = RotateFlipper(FlipperMotorVelocity, FlipperMotorForce);
 
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
-            RightFlipper.motor = RotateFlipper(-1500);
+            RightFlipper.motor = RotateFlipper(-FlipperMotorVelocity, FlipperMotorForce);
         
         // Left flipper
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             LeftFlipper.GetComponent<AudioSource>().Play();
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            LeftFlipper.motor = RotateFlipper(-1500);
+            LeftFlipper.motor = RotateFlipper(-FlipperMotorVelocity, FlipperMotorForce);
 
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
-            LeftFlipper.motor = RotateFlipper(1500);
+            LeftFlipper.motor = RotateFlipper(FlipperMotorVelocity, FlipperMotorForce);
 
         // Launching mechanism
         if (Input.GetKeyDown(KeyCode.Space))
-            Spring.Retract();
+            Plunger.instance.Retract();
 
         if (Input.GetKey(KeyCode.Space))
             AccumulateForce();
@@ -65,7 +78,7 @@ public class Movement : MonoBehaviour
             Inventory.UseItem();
     }
 
-    JointMotor RotateFlipper(float velocity, float force = 150)
+    JointMotor RotateFlipper(float velocity, float force)
     {
         JointMotor jointMotor = new JointMotor();
         jointMotor.force = force;
@@ -81,7 +94,7 @@ public class Movement : MonoBehaviour
 
             if(force >= MaxForce)
             {
-                Spring.Fail();
+                Plunger.instance.Fail();
                 activated = true;
                 force *= Random.Range(0.7f, 0.5f);
             }
@@ -90,9 +103,9 @@ public class Movement : MonoBehaviour
 
     void ReleaseForce()
     {
-        Spring.Release();
+        Plunger.instance.Release();
 
-        foreach(Rigidbody rb in Spring.ObjectsInSpring)
+        foreach(Rigidbody rb in Plunger.instance.ObjectsInSpring)
             rb.AddForce(force*Vector3.forward);
 
         force = MinForce;

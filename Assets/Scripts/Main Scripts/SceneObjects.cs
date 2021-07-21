@@ -17,4 +17,6 @@ public class SceneObjects : MonoBehaviour
     }
 
     public Light MainLight;
+
+    public Camera MainCamera;
 }

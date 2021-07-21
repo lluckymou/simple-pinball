@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 #if UNITY_EDITOR
 enum ItemGivePanel
@@ -10,7 +11,15 @@ enum ItemGivePanel
     Fireball,
     WaterDroplet,
     LuckyCharm,
-    CurseOfAnubis
+    CurseOfAnubis,
+    AngelWings,
+    CameraFlip,
+    ExtraBall,
+    HealthBonus,
+    PingPong,
+    Rock,
+    TennisBall,
+    TicketPrize
 }
 #endif
 
@@ -38,6 +47,13 @@ public class ItemGUI : MonoBehaviour
         [SerializeField] 
         ItemGivePanel GiveItem;
     #endif
+
+    [Header("Item Info Panel")]
+    [SerializeField]
+    TMP_Text ItemName;
+    
+    [SerializeField]
+    TMP_Text ItemDescription;
 
     [Header("Item Shop")]
     [SerializeField]
@@ -69,6 +85,17 @@ public class ItemGUI : MonoBehaviour
     [SerializeField]
     AudioClip PurchaseFail;
 
+    void Awake()
+    {
+        #if UNITY_EDITOR
+            GiveItem = ItemGivePanel.Nothing;
+        #endif
+
+        RustyCrate.onClick.AddListener(() => Inventory.PurchaseItem(3, Crates.Rusty));
+        BrassCrate.onClick.AddListener(() => Inventory.PurchaseItem(6, Crates.Brass));
+        GoldenCrate.onClick.AddListener(() => Inventory.PurchaseItem(10, Crates.Golden));
+    }
+
     #if UNITY_EDITOR
         void Update()
         {
@@ -86,6 +113,14 @@ public class ItemGUI : MonoBehaviour
                     case ItemGivePanel.WaterDroplet: Inventory.GiveItem(Items.WaterDroplet); break;
                     case ItemGivePanel.LuckyCharm: Inventory.GiveItem(Items.LuckyCharm); break;
                     case ItemGivePanel.CurseOfAnubis: Inventory.GiveItem(Items.CurseOfAnubis); break;
+                    case ItemGivePanel.AngelWings: Inventory.GiveItem(Items.AngelWings); break;
+                    case ItemGivePanel.CameraFlip: Inventory.GiveItem(Items.CameraFlip); break;
+                    case ItemGivePanel.ExtraBall: Inventory.GiveItem(Items.ExtraBall); break;
+                    case ItemGivePanel.HealthBonus: Inventory.GiveItem(Items.HealthBonus); break;
+                    case ItemGivePanel.PingPong: Inventory.GiveItem(Items.PingPong); break;
+                    case ItemGivePanel.Rock: Inventory.GiveItem(Items.Rock); break;
+                    case ItemGivePanel.TennisBall: Inventory.GiveItem(Items.TennisBall); break;
+                    case ItemGivePanel.TicketPrize: Inventory.GiveItem(Items.TicketPrize); break;
                 }
 
                 GiveItem = ItemGivePanel.Nothing;
@@ -93,15 +128,14 @@ public class ItemGUI : MonoBehaviour
         }
     #endif
 
-    void Awake()
+    public void GenerateItemInfo(int slot)
     {
-        #if UNITY_EDITOR
-            GiveItem = ItemGivePanel.Nothing;
-        #endif
+        if(slot < 0 || slot >= Inventory.Slots.Length) return;
 
-        RustyCrate.onClick.AddListener(() => Inventory.PurchaseItem(3, Crates.Rusty));
-        BrassCrate.onClick.AddListener(() => Inventory.PurchaseItem(6, Crates.Brass));
-        GoldenCrate.onClick.AddListener(() => Inventory.PurchaseItem(10, Crates.Golden));
+        
+
+        ItemName.text = Inventory.Slots[slot].Name;
+        ItemDescription.text = Inventory.Slots[slot].Description;
     }
 
     public void LoadItems()

@@ -25,7 +25,7 @@ public class Items : MonoBehaviour
         get => instance._noItem;
     }
 
-    [Header("Common")]
+    [Header("Items")]
     [SerializeField]
     Fireball _fireball;
 
@@ -50,12 +50,75 @@ public class Items : MonoBehaviour
         get => instance._luckyCharm;
     }
 
-    [Header("Rare")]
     [SerializeField]
     CurseOfAnubis _curseOfAnubis;
 
     public static CurseOfAnubis CurseOfAnubis
     {
         get => instance._curseOfAnubis;
+    }
+
+    [SerializeField]
+    AngelWings _angelWings;
+
+    public static AngelWings AngelWings
+    {
+        get => instance._angelWings;
+    }
+
+    [SerializeField]
+    CameraFlip _cameraFlip;
+
+    public static CameraFlip CameraFlip
+    {
+        get => instance._cameraFlip;
+    }
+
+    [SerializeField]
+    ExtraBall _extraBall;
+
+    public static ExtraBall ExtraBall
+    {
+        get => instance._extraBall;
+    }
+
+    [SerializeField]
+    HealthBonus _healthBonus;
+
+    public static HealthBonus HealthBonus
+    {
+        get => instance._healthBonus;
+    }
+
+    [SerializeField]
+    PingPong _pingPong;
+
+    public static PingPong PingPong
+    {
+        get => instance._pingPong;
+    }
+
+    [SerializeField]
+    Rock _rock;
+
+    public static Rock Rock
+    {
+        get => instance._rock;
+    }
+
+    [SerializeField]
+    TennisBall _tennisBall;
+
+    public static TennisBall TennisBall
+    {
+        get => instance._tennisBall;
+    }
+
+    [SerializeField]
+    TicketPrize _ticketPrize;
+
+    public static TicketPrize TicketPrize
+    {
+        get => instance._ticketPrize;
     }
 }

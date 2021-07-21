@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class Plunger : MonoBehaviour
 {
+    // Same-scene "singleton" pattern 
+    private static Plunger _instance;
+    public static Plunger instance
+    {
+        get
+        {
+            if (!_instance)
+                _instance = FindObjectOfType<Plunger>();
+            return _instance;
+        }
+    }
+
     [SerializeField]
     Animator Spring;
 

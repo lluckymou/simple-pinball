@@ -43,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9c42efb4d00944da44ce6ab3cf9cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
+  Name: Curse of Anubis
+  Description: Be careful with the spirits of the dead. When used sacrifices all
+    your lives for a massive multiplier boost.
   Icon: {fileID: 21300000, guid: b37423caeba7c44408e7764aa325a096, type: 3}
   TrailMaterial: {fileID: 2100000, guid: 723b2051f9ff69b41833ecf1328b9361, type: 2}
   CustomPhysicMaterial: {fileID: 13400000, guid: 6a3d1b84c666885469c9c218445093fc, type: 2}
