@@ -148,51 +148,38 @@ public static class Inventory
             case Crates.Rusty:
                 lootTable = new List<ItemIncidence>()
                 {
-                    new ItemIncidence(){ item = Items.Fireball, incidence = 1 },
-                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 1 },
-                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 1 },
-                    new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 1 },
-                    new ItemIncidence(){ item = Items.AngelWings, incidence = 1 },
-                    new ItemIncidence(){ item = Items.CameraFlip, incidence = 1 },
-                    new ItemIncidence(){ item = Items.ExtraBall, incidence = 1 },
+                    new ItemIncidence(){ item = Items.Fireball, incidence = 4 },
+                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 4 },
+                    new ItemIncidence(){ item = Items.CameraFlip, incidence = 3 },
                     new ItemIncidence(){ item = Items.HealthBonus, incidence = 1 },
-                    new ItemIncidence(){ item = Items.PingPong, incidence = 1 },
-                    new ItemIncidence(){ item = Items.Rock, incidence = 1 },
+                    new ItemIncidence(){ item = Items.PingPong, incidence = 3 },
+                    new ItemIncidence(){ item = Items.Rock, incidence = 4 },
                     new ItemIncidence(){ item = Items.TennisBall, incidence = 1 },
-                    new ItemIncidence(){ item = Items.TicketPrize, incidence = 1 }
                 };
                 break;
             case Crates.Brass:
                 lootTable = new List<ItemIncidence>()
                 {
-                    new ItemIncidence(){ item = Items.Fireball, incidence = 1 },
+                    new ItemIncidence(){ item = Items.Fireball, incidence = 2 },
                     new ItemIncidence(){ item = Items.WaterDroplet, incidence = 1 },
-                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 1 },
+                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 4 },
                     new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 1 },
-                    new ItemIncidence(){ item = Items.AngelWings, incidence = 1 },
+                    new ItemIncidence(){ item = Items.AngelWings, incidence = 2 },
                     new ItemIncidence(){ item = Items.CameraFlip, incidence = 1 },
-                    new ItemIncidence(){ item = Items.ExtraBall, incidence = 1 },
+                    new ItemIncidence(){ item = Items.ExtraBall, incidence = 3 },
                     new ItemIncidence(){ item = Items.HealthBonus, incidence = 1 },
-                    new ItemIncidence(){ item = Items.PingPong, incidence = 1 },
-                    new ItemIncidence(){ item = Items.Rock, incidence = 1 },
-                    new ItemIncidence(){ item = Items.TennisBall, incidence = 1 },
-                    new ItemIncidence(){ item = Items.TicketPrize, incidence = 1 }
+                    new ItemIncidence(){ item = Items.PingPong, incidence = 2 },
+                    new ItemIncidence(){ item = Items.TennisBall, incidence = 2 },
+                    new ItemIncidence(){ item = Items.TicketPrize, incidence = 3 }
                 };
                 break;
             case Crates.Golden:
                 lootTable = new List<ItemIncidence>()
                 {
-                    new ItemIncidence(){ item = Items.Fireball, incidence = 1 },
-                    new ItemIncidence(){ item = Items.WaterDroplet, incidence = 1 },
-                    new ItemIncidence(){ item = Items.LuckyCharm, incidence = 1 },
                     new ItemIncidence(){ item = Items.CurseOfAnubis, incidence = 1 },
-                    new ItemIncidence(){ item = Items.AngelWings, incidence = 1 },
-                    new ItemIncidence(){ item = Items.CameraFlip, incidence = 1 },
-                    new ItemIncidence(){ item = Items.ExtraBall, incidence = 1 },
+                    new ItemIncidence(){ item = Items.AngelWings, incidence = 2 },
+                    new ItemIncidence(){ item = Items.ExtraBall, incidence = 2 },
                     new ItemIncidence(){ item = Items.HealthBonus, incidence = 1 },
-                    new ItemIncidence(){ item = Items.PingPong, incidence = 1 },
-                    new ItemIncidence(){ item = Items.Rock, incidence = 1 },
-                    new ItemIncidence(){ item = Items.TennisBall, incidence = 1 },
                     new ItemIncidence(){ item = Items.TicketPrize, incidence = 1 }
                 };
                 break;

@@ -27,7 +27,11 @@ public class HealthBonus : Item
     
     public override void OnUnequip() {}
 
-    public override void OnScoring() {}
+    public override void OnScoring()
+    {
+        if(Random.Range(0, 50) == 0)
+            Player.instance.Lives += 1;
+    }
 
     public override void OnDeath() {}
 

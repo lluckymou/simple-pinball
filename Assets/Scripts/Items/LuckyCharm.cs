@@ -30,6 +30,6 @@ public class LuckyCharm : Item
 
     public override void OnCollision()
     {
-        Player.instance.Multiplier = Random.Range(0.1f, 3.0f);
+        Player.instance.Multiplier = Random.Range(0.01f, 3.6f);
     }
 }

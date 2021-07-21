@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
     [Header("Multiplier Settings")]
     [SerializeField]
-    float IncrementTime;
+    float MultiplierIncrementTime;
 
     [SerializeField]
     float MultiplierIncrement;
@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
             {
                 timeAlive += Time.deltaTime;
 
-                if(timeAlive > IncrementTime)
+                if(timeAlive > MultiplierIncrementTime)
                 {
                     timeAlive = 0;
                     Multiplier += MultiplierIncrement;
@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
         {
             timeDead += Time.deltaTime;
 
-            if(timeDead > 1)
+            if(timeDead > 0.8f)
             {
                 if(Lives < 0) return;
 

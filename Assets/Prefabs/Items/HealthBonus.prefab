@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Health Bonus
-  Description: Lives! Lives! Livesss!!! (or rather balls)
+  Description: Immediate life (ball) bonus + 2% chance of gaining a life (ball) everytime
+    you score.
   Icon: {fileID: 21300000, guid: 88782891c53b65e4988531078fc53553, type: 3}
   TrailMaterial: {fileID: 0}
   CustomPhysicMaterial: {fileID: 0}
