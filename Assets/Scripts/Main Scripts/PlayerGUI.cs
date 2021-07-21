@@ -18,9 +18,11 @@ public class PlayerGUI : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     [Header("Debug")]
     [SerializeField]
     TMP_Text FPS;
+#endif
 
     [Header("Important Buttons")]
     [SerializeField]
@@ -54,6 +56,11 @@ public class PlayerGUI : MonoBehaviour
 
     public TMP_Text Lives;
 
+    [Header("Info Panel")]
+    public TMP_Text InfoName;
+    
+    public TMP_Text InfoDescription;
+
     [Header("Other Labels/Fields")]
     [SerializeField]
     TMP_InputField HighScore;
@@ -62,6 +69,9 @@ public class PlayerGUI : MonoBehaviour
 
     void Awake()
     {
+#if UNITY_EDITOR
+        FPS.gameObject.SetActive(true);
+#endif
         OpenPlayPanel();
 
         Play.onClick.AddListener(PlayGame);
@@ -114,6 +124,7 @@ public class PlayerGUI : MonoBehaviour
         HighScore.text = text;
     }
 
+#if UNITY_EDITOR
     void Update()
     {
         refreshRate += Time.deltaTime;
@@ -125,4 +136,5 @@ public class PlayerGUI : MonoBehaviour
             refreshRate = 0;
         }
     }
+#endif
 }

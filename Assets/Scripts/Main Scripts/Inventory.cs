@@ -168,7 +168,6 @@ public static class Inventory
                     new ItemIncidence(){ item = Items.CameraFlip, incidence = 1 },
                     new ItemIncidence(){ item = Items.ExtraBall, incidence = 3 },
                     new ItemIncidence(){ item = Items.HealthBonus, incidence = 1 },
-                    new ItemIncidence(){ item = Items.PingPong, incidence = 2 },
                     new ItemIncidence(){ item = Items.TennisBall, incidence = 2 },
                     new ItemIncidence(){ item = Items.TicketPrize, incidence = 3 }
                 };
