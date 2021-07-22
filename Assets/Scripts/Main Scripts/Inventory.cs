@@ -47,11 +47,6 @@ public static class Inventory
             return;
         }
 
-        #if UNITY_EDITOR
-            if(!ItemGUI.instance.FreeShops)
-        #endif
-                Player.instance.Tickets -= price;
-                
         // Checks where to add the item (from the first to the last slot)
         int position = -1;
         for (int i = 0; i < Slots.Length; i++)
@@ -67,6 +62,12 @@ public static class Inventory
             ItemGUI.instance.PurchaseFailSound();
             return;
         }
+
+        // Subtracts the price from the ticket count
+        #if UNITY_EDITOR
+            if(!ItemGUI.instance.FreeShops)
+        #endif
+                Player.instance.Tickets -= price;
 
         Slots[position] = GenerateItemFromRarity(rarity);
         ItemGUI.instance.PurchaseSound();

@@ -27,6 +27,10 @@ public class Movement : MonoBehaviour
     public int FlipperMotorVelocity;
     public int FlipperMotorForce;
 
+    [Header("Shaking/Tilting")]
+    [SerializeField]
+    float ShakingForce;
+
     [Header("Plunger")]
     [SerializeField, Range(0, 50)]
     byte MaxForce;
@@ -43,6 +47,18 @@ public class Movement : MonoBehaviour
     void Update()
     {
         if(Player.instance.Lives < 0) return;
+
+        // Launching mechanism
+        if (Input.GetKeyDown(KeyCode.Space))
+            Plunger.instance.Retract();
+
+        if (Input.GetKey(KeyCode.Space))
+            AccumulateForce();
+
+        if (Input.GetKeyUp(KeyCode.Space))
+            ReleaseForce();
+
+        if(Player.Tilt) return;
 
         // Right flipper
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
@@ -64,16 +80,14 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
             LeftFlipper.motor = RotateFlipper(FlipperMotorVelocity, FlipperMotorForce);
 
-        // Launching mechanism
-        if (Input.GetKeyDown(KeyCode.Space))
-            Plunger.instance.Retract();
+        // Tilting activation/Shaking mechanism
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            Boost(Vector3.left, ShakingForce);
 
-        if (Input.GetKey(KeyCode.Space))
-            AccumulateForce();
+        if (Input.GetKeyDown(KeyCode.RightShift))
+            Boost(Vector3.right, ShakingForce);
 
-        if (Input.GetKeyUp(KeyCode.Space))
-            ReleaseForce();
-
+        // Powerup
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.LeftApple))
             Inventory.UseItem();
     }
@@ -98,6 +112,27 @@ public class Movement : MonoBehaviour
                 activated = true;
                 force *= Random.Range(0.7f, 0.5f);
             }
+        }
+    }
+
+    void Boost(Vector3 direction, float force)
+    {
+        // Applies the force to the ball(s)
+        foreach(Rigidbody rb in Field.instance.BallsInField)
+            rb.AddForce(force*direction);
+
+        // Randomly (20%) decides to activate the machine TILT
+        if(Random.Range(0, 5) == 0)
+        {
+            Player.Tilt = true;
+
+            // Plays tilt sound
+            Field.instance.TiltSound();
+        }
+        else
+        {
+            // Plays successful boost sound
+            Field.instance.BoostSound();
         }
     }
 

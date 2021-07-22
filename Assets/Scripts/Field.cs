@@ -23,6 +23,12 @@ public class Field : MonoBehaviour
     AudioClip Death;
 
     [SerializeField]
+    AudioClip Boost;
+
+    [SerializeField]
+    AudioClip Tilt;
+
+    [SerializeField]
     AudioClip Powerup;
 
     public bool HasBall
@@ -47,6 +53,12 @@ public class Field : MonoBehaviour
 
     public void PowerupSound() => 
         GetComponent<AudioSource>().PlayOneShot(Powerup);
+
+    public void TiltSound() => 
+        GetComponent<AudioSource>().PlayOneShot(Tilt);
+
+    public void BoostSound() => 
+        GetComponent<AudioSource>().PlayOneShot(Boost);
 
     public void EliminateBalls()
     {

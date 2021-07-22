@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     float timeAlive = 0, timeDead = 0;
     int lastTicketIncrement = 0;
 
+    public static bool Tilt;
+
     public int Score
     {
         get => _score;
@@ -77,6 +79,8 @@ public class Player : MonoBehaviour
         {
             // Updates score variable
             _tickets = value;
+
+            PlayerPrefs.SetInt("ticketCount", value);
 
             // Updates UI text
             PlayerGUI.instance.Tickets.text = _tickets.ToString();
@@ -115,10 +119,11 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        Tickets = PlayerPrefs.GetInt("ticketCount", 0);
+
         PlayerGUI.instance.Score.text = _score.ToString();
         PlayerGUI.instance.Multiplier.text = $"{_multiplier}x";
         PlayerGUI.instance.Lives.text = (_lives < 0 ? "0" : _lives.ToString());
-        PlayerGUI.instance.Tickets.text = _tickets.ToString();
 
         ItemGUI.instance.LoadItems();
     }
@@ -127,6 +132,7 @@ public class Player : MonoBehaviour
 
     public void GameStart() 
     {
+        Tilt = false;
         Lives = 4;
         Score = 0;
     }
@@ -158,6 +164,7 @@ public class Player : MonoBehaviour
 
                 timeDead = 0;
                 Lives -= 1;
+                Tilt = false;
                 Inventory.Equipped.OnDeath();
                 Inventory.Unequip();
 
