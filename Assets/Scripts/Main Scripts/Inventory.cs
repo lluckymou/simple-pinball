@@ -30,6 +30,7 @@ public static class Inventory
         Slots[position] = item;
 
         // Updates item UI
+        SetMemory();
         ItemGUI.instance.LoadItems();
     }
 
@@ -73,6 +74,7 @@ public static class Inventory
         ItemGUI.instance.PurchaseSound();
 
         // Updates item UI
+        SetMemory();
         ItemGUI.instance.LoadItems();
     }
 
@@ -116,10 +118,35 @@ public static class Inventory
         Equipped.OnEquip();
 
         // Updates item UI
+        SetMemory();
         ItemGUI.instance.LoadItems();
 
         // Plays sound from the board
         Field.instance.PowerupSound();
+    }
+
+    public static void GetMemory()
+    {
+        for (int i = 0; i < Slots.Length; i++)
+        {
+            try
+            {
+                Slots[i] = Items.GetItemFromEnumeration((ItemEnumeration) PlayerPrefs.GetInt($"Item{i}", 0));
+            }
+            catch(System.InvalidCastException ex)
+            {
+                Debug.LogError(ex.Message);
+                Slots[i] = Items.NoItem;
+            }
+        }
+
+        ItemGUI.instance.LoadItems();
+    }
+
+    public static void SetMemory()
+    {
+        for (int i = 0; i < Slots.Length; i++)
+            PlayerPrefs.SetInt($"Item{i}", (int) Items.GetEnumerationFromItem(Slots[i]));
     }
 
     public static void Clear()
@@ -129,6 +156,7 @@ public static class Inventory
         Slots = new Item[3] { Items.NoItem, Items.NoItem, Items.NoItem };
 
         // Updates item UI
+        SetMemory();
         ItemGUI.instance.LoadItems();
     }
 

@@ -25,7 +25,7 @@ public class ItemGUI : MonoBehaviour
         bool ClearInventory;
 
         [SerializeField] 
-        InspectorItem GiveItem;
+        ItemEnumeration GiveItem;
     #endif
 
     [Header("Item Shop")]
@@ -61,7 +61,7 @@ public class ItemGUI : MonoBehaviour
     void Awake()
     {
         #if UNITY_EDITOR
-            GiveItem = InspectorItem.NoItem;
+            GiveItem = ItemEnumeration.NoItem;
         #endif
 
         RustyCrate.onClick.AddListener(() => Inventory.PurchaseItem(3, Crates.Rusty));
@@ -78,10 +78,10 @@ public class ItemGUI : MonoBehaviour
                 ClearInventory = false;
             }
 
-            if(GiveItem != InspectorItem.NoItem)
+            if(GiveItem != ItemEnumeration.NoItem)
             {
-                Inventory.GiveItem(GetItemFromInspectorEnum(GiveItem));
-                GiveItem = InspectorItem.NoItem;
+                Inventory.GiveItem(Items.GetItemFromEnumeration(GiveItem));
+                GiveItem = ItemEnumeration.NoItem;
             }
         }
     #endif
@@ -89,9 +89,9 @@ public class ItemGUI : MonoBehaviour
     // Method to be used in an event system on the inspector
     public void GetItemInfo(string _item)
     {
-        if(!InspectorItem.TryParse(_item, out InspectorItem item)) return;
+        if(!ItemEnumeration.TryParse(_item, out ItemEnumeration item)) return;
 
-        Item itemFound = GetItemFromInspectorEnum(item);
+        Item itemFound = Items.GetItemFromEnumeration(item);
 
         PlayerGUI.instance.InfoName.text = itemFound.Name;
         PlayerGUI.instance.InfoDescription.text = itemFound.Description;
@@ -115,27 +115,6 @@ public class ItemGUI : MonoBehaviour
     public void PurchaseSound() => UISpeaker.PlayOneShot(Purchase);
 
     public void PurchaseFailSound() => UISpeaker.PlayOneShot(PurchaseFail);
-
-    Item GetItemFromInspectorEnum(InspectorItem item)
-    {
-        switch(item)
-        {
-            case InspectorItem.Fireball: return Items.Fireball;
-            case InspectorItem.WaterDroplet: return Items.WaterDroplet;
-            case InspectorItem.LuckyCharm: return Items.LuckyCharm;
-            case InspectorItem.CurseOfAnubis: return Items.CurseOfAnubis;
-            case InspectorItem.AngelWings: return Items.AngelWings;
-            case InspectorItem.CameraFlip: return Items.CameraFlip;
-            case InspectorItem.ExtraBall: return Items.ExtraBall;
-            case InspectorItem.HealthBonus: return Items.HealthBonus;
-            case InspectorItem.PingPong: return Items.PingPong;
-            case InspectorItem.Rock: return Items.Rock;
-            case InspectorItem.TennisBall: return Items.TennisBall;
-            case InspectorItem.TicketPrize: return Items.TicketPrize;
-        }
-
-        return Items.NoItem;
-    }
 
     void LoadItem(Item item, List<Image> itemSlot)
     {

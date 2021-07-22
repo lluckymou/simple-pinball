@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Items : MonoBehaviour
 {
@@ -121,4 +122,35 @@ public class Items : MonoBehaviour
     {
         get => instance._ticketPrize;
     }
+
+    static Dictionary<Item, ItemEnumeration> itemIDs
+    {
+        get => new Dictionary<Item, ItemEnumeration>()
+        {
+            { Items.NoItem, ItemEnumeration.NoItem},
+            { Items.Fireball, ItemEnumeration.Fireball},
+            { Items.WaterDroplet, ItemEnumeration.WaterDroplet},
+            { Items.LuckyCharm, ItemEnumeration.LuckyCharm},
+            { Items.CurseOfAnubis, ItemEnumeration.CurseOfAnubis},
+            { Items.AngelWings, ItemEnumeration.AngelWings},
+            { Items.CameraFlip, ItemEnumeration.CameraFlip},
+            { Items.ExtraBall, ItemEnumeration.ExtraBall},
+            { Items.HealthBonus, ItemEnumeration.HealthBonus},
+            { Items.PingPong, ItemEnumeration.PingPong},
+            { Items.Rock, ItemEnumeration.Rock},
+            { Items.TennisBall, ItemEnumeration.TennisBall},
+            { Items.TicketPrize, ItemEnumeration.TicketPrize},
+        };
+    }
+        
+
+    public static ItemEnumeration GetEnumerationFromItem(Item item)
+    {
+        if (itemIDs.TryGetValue(item, out ItemEnumeration enumItem))
+            return enumItem;
+        else return ItemEnumeration.NoItem;
+    }
+
+    public static Item GetItemFromEnumeration(ItemEnumeration item) =>
+        itemIDs.FirstOrDefault(i => i.Value == item).Key;
 }

@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 4951467395676115413}
   - component: {fileID: 2552191448032488672}
   - component: {fileID: 6153374466952637501}
+  - component: {fileID: 23564715}
   - component: {fileID: 6153374466952637490}
   - component: {fileID: 6153374466952637491}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +32,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6153374466952637489}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.915, y: 1.411, z: 10.668}
   m_LocalScale: {x: 1, y: 1, z: 0.01}
   m_Children: []
@@ -221,6 +222,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &23564715
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153374466952637489}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: -0.01, z: 1.0000002}
+  m_Center: {x: 0, y: -0.5, z: -0.0000038146973}
 --- !u!54 &6153374466952637490
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -229,9 +243,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6153374466952637489}
   serializedVersion: 2
-  m_Mass: 0.1
+  m_Mass: 0.05
   m_Drag: 0
-  m_AngularDrag: 0.5
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -249,7 +263,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -4.915, y: 1.411, z: 10.668}
+  m_ConnectedAnchor: {x: -3.4261062, y: 0.563433, z: 4.046304}
   m_UseSpring: 0
   m_Spring:
     spring: 0

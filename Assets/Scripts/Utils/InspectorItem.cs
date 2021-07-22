@@ -1,4 +1,4 @@
-public enum InspectorItem
+public enum ItemEnumeration
 {
     NoItem,
     Fireball,

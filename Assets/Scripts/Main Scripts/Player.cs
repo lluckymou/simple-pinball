@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
         PlayerGUI.instance.Multiplier.text = $"{_multiplier}x";
         PlayerGUI.instance.Lives.text = (_lives < 0 ? "0" : _lives.ToString());
 
-        ItemGUI.instance.LoadItems();
+        Inventory.GetMemory();
     }
 
     public void IncrementScore(int value) => Score += (int) (value * Multiplier);
