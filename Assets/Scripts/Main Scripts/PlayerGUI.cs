@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -33,6 +32,9 @@ public class PlayerGUI : MonoBehaviour
 
     [SerializeField]
     Button Reset;
+
+    [SerializeField]
+    Button DeleteProgress;
 
     [Header("Panels")]
     [SerializeField]
@@ -74,6 +76,7 @@ public class PlayerGUI : MonoBehaviour
 #endif
         OpenPlayPanel();
 
+        DeleteProgress.onClick.AddListener(RestartProgress);
         Play.onClick.AddListener(PlayGame);
         PlayAgain.onClick.AddListener(OpenPlayPanel);
         Reset.onClick.AddListener(ResetGame);
@@ -110,6 +113,12 @@ public class PlayerGUI : MonoBehaviour
     {
         PlayPanel.SetActive(false);
         GameOverPanel.SetActive(false);
+    }
+
+    void RestartProgress()
+    {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene("Game");
     }
 
     void GenerateGameList()

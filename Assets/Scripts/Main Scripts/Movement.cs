@@ -41,6 +41,9 @@ public class Movement : MonoBehaviour
     [SerializeField]
     float IncreasingFactor;
 
+    [HideInInspector]
+    public int TiltChance = 5;
+
     float force;
     bool activated;
 
@@ -122,7 +125,7 @@ public class Movement : MonoBehaviour
             rb.AddForce(force*direction);
 
         // Randomly (20%) decides to activate the machine TILT
-        if(Random.Range(0, 5) == 0)
+        if(Random.Range(0, TiltChance) == 0)
         {
             Player.Tilt = true;
 

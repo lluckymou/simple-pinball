@@ -4,22 +4,6 @@ using UnityEngine;
 
 public class Fireball : Item
 {
-    [Header("Descriptive attributes")]
-    new string Name;
-    new string Description;
-
-    [Header("UI Sprite")]
-    new Sprite Icon;
-
-    [Header("Trail Settings")]
-    new Material TrailMaterial;
-
-    [Header("Ball Material Settings")]
-    new Material PoweredUpMaterial;
-    
-    [Header("Physic Material Settings")]
-    new Material CustomPhysicMaterial;
-
     public override void OnEquip() {}
     
     public override void OnUnequip() {}

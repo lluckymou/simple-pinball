@@ -4,28 +4,15 @@ using UnityEngine;
 
 public class TennisBall : Item
 {
-    [Header("Descriptive attributes")]
-    new string Name;
-    new string Description;
-
-    [Header("UI Sprite")]
-    new Sprite Icon;
-
-    [Header("Trail Settings")]
-    new Material TrailMaterial;
-
-    [Header("Ball Material Settings")]
-    new Material PoweredUpMaterial;
-    
-    [Header("Physic Material Settings")]
-    new Material CustomPhysicMaterial;
-
     public override void OnEquip()
     {
-        Player.instance.Lives += 1;
+        Movement.instance.TiltChance = 20;
     }
     
-    public override void OnUnequip() {}
+    public override void OnUnequip()
+    {
+        Movement.instance.TiltChance = 5;
+    }
 
     public override void OnScoring() {}
 

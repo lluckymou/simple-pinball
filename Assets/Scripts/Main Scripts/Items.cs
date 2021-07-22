@@ -127,19 +127,19 @@ public class Items : MonoBehaviour
     {
         get => new Dictionary<Item, ItemEnumeration>()
         {
-            { Items.NoItem, ItemEnumeration.NoItem},
-            { Items.Fireball, ItemEnumeration.Fireball},
-            { Items.WaterDroplet, ItemEnumeration.WaterDroplet},
-            { Items.LuckyCharm, ItemEnumeration.LuckyCharm},
-            { Items.CurseOfAnubis, ItemEnumeration.CurseOfAnubis},
-            { Items.AngelWings, ItemEnumeration.AngelWings},
-            { Items.CameraFlip, ItemEnumeration.CameraFlip},
-            { Items.ExtraBall, ItemEnumeration.ExtraBall},
-            { Items.HealthBonus, ItemEnumeration.HealthBonus},
-            { Items.PingPong, ItemEnumeration.PingPong},
-            { Items.Rock, ItemEnumeration.Rock},
-            { Items.TennisBall, ItemEnumeration.TennisBall},
-            { Items.TicketPrize, ItemEnumeration.TicketPrize},
+            { NoItem, ItemEnumeration.NoItem},
+            { Fireball, ItemEnumeration.Fireball},
+            { WaterDroplet, ItemEnumeration.WaterDroplet},
+            { LuckyCharm, ItemEnumeration.LuckyCharm},
+            { CurseOfAnubis, ItemEnumeration.CurseOfAnubis},
+            { AngelWings, ItemEnumeration.AngelWings},
+            { CameraFlip, ItemEnumeration.CameraFlip},
+            { ExtraBall, ItemEnumeration.ExtraBall},
+            { HealthBonus, ItemEnumeration.HealthBonus},
+            { PingPong, ItemEnumeration.PingPong},
+            { Rock, ItemEnumeration.Rock},
+            { TennisBall, ItemEnumeration.TennisBall},
+            { TicketPrize, ItemEnumeration.TicketPrize},
         };
     }
         

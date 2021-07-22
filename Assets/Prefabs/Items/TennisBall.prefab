@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Tennis Ball
-  Description: Insane bouncing and an extra life (ball).
+  Description: Insane bouncing and 5% tilt fail rate (instead of 20%).
   Icon: {fileID: 21300000, guid: 1ee735b90ad0c374682676548d5062e9, type: 3}
   TrailMaterial: {fileID: 0}
   CustomPhysicMaterial: {fileID: 13400000, guid: c69ab9c4c832f8d4a9d8597294b40bcc, type: 2}

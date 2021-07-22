@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class NoItem : Item
 {
-    [Header("Descriptive attributes")]
-    new string Name;
-    new string Description;
-
     public override void OnEquip() {}
     
     public override void OnUnequip() {}
