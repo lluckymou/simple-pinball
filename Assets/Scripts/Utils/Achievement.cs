@@ -15,8 +15,26 @@ public abstract class Achievement : MonoBehaviour
     [Header("Requirement")]
     public List<AchievementEnumeration> Constraints;
 
-    public abstract Image Icon
+    public AchievementRarity Rarity;
+
+    public abstract Image Icon { get; }
+
+    public bool CanBeCompleted
     {
-        get;
+        get
+        {
+            if(Constraints.Count < 1) return true;
+
+            foreach(AchievementEnumeration constraint in Constraints)
+                if(!Achievements.GetAchievementFromEnumeration(constraint).Completed)
+                    return false;
+            
+            return true;
+        }
+    }
+
+    public bool IsVisible
+    {
+        get => CanBeCompleted;
     }
 }

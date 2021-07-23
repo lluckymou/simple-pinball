@@ -130,36 +130,67 @@ public class Achievements : MonoBehaviour
         get => instance._ticketMaster;
     }
 
-    static Dictionary<Achievement, AchievementEnumeration> achievementIDs
+    // The order of the Dictionary is analogous to the item's, as converting from the enum is far more common with achievements
+    static Dictionary<AchievementEnumeration, Achievement> achievementIDs
     {
-        get => new Dictionary<Achievement, AchievementEnumeration>()
+        get => new Dictionary<AchievementEnumeration, Achievement>()
         {
-            { Ninja, AchievementEnumeration.Ninja},
-            { GamblingExpert, AchievementEnumeration.GamblingExpert},
-            { GamblingNewbie, AchievementEnumeration.GamblingNewbie},
-            { GamblingTycoon, AchievementEnumeration.GamblingTycoon},
-            { GettingStarted, AchievementEnumeration.GettingStarted},
-            { Jackpot, AchievementEnumeration.Jackpot},
-            { OneOfAKind, AchievementEnumeration.OneOfAKind},
-            { PinballWizard, AchievementEnumeration.PinballWizard},
-            { StraightFlush, AchievementEnumeration.StraightFlush},
-            { Survivalist, AchievementEnumeration.Survivalist},
-            { TicketApprentice, AchievementEnumeration.TicketApprentice},
-            { TicketHoarder, AchievementEnumeration.TicketHoarder},
-            { TicketManiac, AchievementEnumeration.TicketManiac},
-            { TicketMaster, AchievementEnumeration.TicketMaster},
+            { AchievementEnumeration.Ninja, Ninja},
+            { AchievementEnumeration.GamblingExpert, GamblingExpert},
+            { AchievementEnumeration.GamblingNewbie, GamblingNewbie},
+            { AchievementEnumeration.GamblingTycoon, GamblingTycoon},
+            { AchievementEnumeration.GettingStarted, GettingStarted},
+            { AchievementEnumeration.Jackpot, Jackpot},
+            { AchievementEnumeration.OneOfAKind, OneOfAKind},
+            { AchievementEnumeration.PinballWizard, PinballWizard},
+            { AchievementEnumeration.StraightFlush, StraightFlush},
+            { AchievementEnumeration.Survivalist, Survivalist},
+            { AchievementEnumeration.TicketApprentice, TicketApprentice},
+            { AchievementEnumeration.TicketHoarder, TicketHoarder},
+            { AchievementEnumeration.TicketManiac, TicketManiac},
+            { AchievementEnumeration.TicketMaster, TicketMaster},
         };
     }
 
-    public static AchievementEnumeration GetEnumerationFromAchievement(Achievement achievement)
+    public static AchievementEnumeration[] AllAchievements
     {
-        if (achievementIDs.TryGetValue(achievement, out AchievementEnumeration enumAchievement))
+        get
+        {
+            return (AchievementEnumeration[]) AchievementEnumeration.GetValues(typeof(AchievementEnumeration));
+        }
+    } 
+
+    public static AchievementEnumeration GetEnumerationFromAchievement(Achievement achievement) =>
+        achievementIDs.FirstOrDefault(a => a.Value == achievement).Key;
+
+    public static Achievement GetAchievementFromEnumeration(AchievementEnumeration achievement)
+    {
+        if (achievementIDs.TryGetValue(achievement, out Achievement enumAchievement))
             return enumAchievement;
-        else return AchievementEnumeration.GettingStarted;
+        else return GettingStarted;
+    }
+    
+    void Awake()
+    {
+        // Loads all achievements from memory
+        foreach(AchievementEnumeration achievementEnumeration in AllAchievements)
+        {
+            // Checks if said achievement is complete and gives it to the user
+            if(PlayerPrefs.GetInt(achievementEnumeration.ToString(), 0) == 1)
+                GiveAchievement(GetAchievementFromEnumeration(achievementEnumeration), true);
+        }
+
+        // Loads all achievement UI
+        AchievementGUI.instance.UpdateUI();
     }
 
-    public static Achievement GetAchievementFromEnumeration(AchievementEnumeration item) =>
-        achievementIDs.FirstOrDefault(i => i.Value == item).Key;
+    void GiveAchievement(Achievement achievement, bool alreadyAchieved = false)
+    {
+        // TODO TODO TODO TODO TODO
 
-    
+        if(!alreadyAchieved)
+        {
+
+        }
+    }
 }

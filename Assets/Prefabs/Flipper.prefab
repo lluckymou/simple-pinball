@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 391046676453234878}
   - component: {fileID: 1345682664707179576}
   - component: {fileID: 4621307107969669191}
-  - component: {fileID: 1345682664707179580}
   - component: {fileID: 1345682664707179577}
+  - component: {fileID: 7967018900454362686}
   m_Layer: 3
   m_Name: Flipper
   m_TagString: Untagged
@@ -197,19 +197,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!65 &1345682664707179580
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2192613726978849131}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.081199996, y: 0.367667, z: 0.059}
-  m_Center: {x: 0, y: 0.1432335, z: -0.030499998}
 --- !u!59 &1345682664707179577
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -246,3 +233,17 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!64 &7967018900454362686
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192613726978849131}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8537770451613667379, guid: 06075180066d2204180d33b90b193c82, type: 3}
