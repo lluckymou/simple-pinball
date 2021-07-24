@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Pinball Wizard
-  Description: Score 1,000,000 points in a game.
+  Description: Score 500,000 points in a game.
   Completed: 0
   Constraints: 010000000b00000004000000060000000a00000002000000
   Rarity: 2

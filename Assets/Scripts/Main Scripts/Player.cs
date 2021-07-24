@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
                 Tickets += 1;
             }
 
-            if(_score >= 1000000) Achievements.GiveAchievement(Achievements.PinballWizard);
+            if(_score >= 500000) Achievements.GiveAchievement(Achievements.PinballWizard);
 
             // Updates UI text
             PlayerGUI.instance.Score.text = _score.ToString();
