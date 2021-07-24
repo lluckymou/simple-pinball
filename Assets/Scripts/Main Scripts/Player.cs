@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     int TicketEarningFactor;
 
     float timeAlive = 0, timeDead = 0;
-    int lastTicketIncrement = 0;
+    float lastTicketIncrement = 0;
 
     public static bool Tilt;
 
@@ -61,11 +61,13 @@ public class Player : MonoBehaviour
             _score = value;
 
             if(_score == 0) lastTicketIncrement = 0; //reset condition
-            else if(_score > lastTicketIncrement+TicketEarningFactor)
+            else if(_score > lastTicketIncrement+(TicketEarningFactor*_multiplier))
             {
-                lastTicketIncrement += TicketEarningFactor;
+                lastTicketIncrement += TicketEarningFactor * _multiplier;
                 Tickets += 1;
             }
+
+            if(_score > 1000000) Achievements.GiveAchievement(Achievements.PinballWizard);
 
             // Updates UI text
             PlayerGUI.instance.Score.text = _score.ToString();
@@ -77,10 +79,16 @@ public class Player : MonoBehaviour
         get => _tickets;
         set
         {
-            // Updates score variable
+            // Updates ticket variable
             _tickets = value;
 
             PlayerPrefs.SetInt("ticketCount", value);
+
+            if(_tickets > 0)
+                if(_tickets >= 1000) Achievements.GiveAchievement(Achievements.TicketManiac);
+                else if(_tickets >= 100) Achievements.GiveAchievement(Achievements.TicketHoarder);
+                else if(_tickets >= 10) Achievements.GiveAchievement(Achievements.TicketMaster);
+                else Achievements.GiveAchievement(Achievements.TicketApprentice);
 
             // Updates UI text
             PlayerGUI.instance.Tickets.text = _tickets.ToString();
@@ -95,6 +103,9 @@ public class Player : MonoBehaviour
         {
             // Updates multiplier variable
             _multiplier = value;
+
+            if(_multiplier >= 5) Achievements.GiveAchievement(Achievements.Ninja);
+            else if(_multiplier >= 3) Achievements.GiveAchievement(Achievements.Survivalist);
 
             // Updates UI text
             PlayerGUI.instance.Multiplier.text = $"{_multiplier.ToString("0.0")}x";
@@ -132,6 +143,7 @@ public class Player : MonoBehaviour
 
     public void GameStart() 
     {
+        Achievements.GiveAchievement(Achievements.GettingStarted);
         Tilt = false;
         Lives = 4;
         Score = 0;

@@ -19,10 +19,16 @@ public abstract class Achievement : MonoBehaviour
 
     public abstract Image Icon { get; }
 
+    public Sprite Sprite
+    {
+        get => Icon.transform.GetChild(0).GetComponent<Image>().sprite;
+    }
+
     public bool CanBeCompleted
     {
         get
         {
+            if(Completed) return false;
             if(Constraints.Count < 1) return true;
 
             foreach(AchievementEnumeration constraint in Constraints)
@@ -31,10 +37,5 @@ public abstract class Achievement : MonoBehaviour
             
             return true;
         }
-    }
-
-    public bool IsVisible
-    {
-        get => CanBeCompleted;
     }
 }

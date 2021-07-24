@@ -45,6 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Ninja
   Description: Get a 5x multiplier.
-  Completed: 0
-  Constraints: 0000000009000000
+  Completed: 1
+  Constraints: 010000000a000000
   Rarity: 1

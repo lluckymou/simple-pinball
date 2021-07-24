@@ -45,5 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Gambling Newbie
   Description: Buy your first crate.
-  Completed: 0
-  Constraints: 000000000a000000
+  Completed: 1
+  Constraints: 010000000b000000
+  Rarity: 0

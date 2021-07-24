@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Ticket Hoarder
-  Description: Get yourself 50 tickets.
-  Completed: 0
-  Constraints: 000000000a0000000d000000
+  Description: Get yourself 100 tickets.
+  Completed: 1
+  Constraints: 010000000b0000000e000000
   Rarity: 1

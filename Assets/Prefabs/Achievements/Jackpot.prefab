@@ -46,4 +46,5 @@ MonoBehaviour:
   Name: Jackpot
   Description: Have three of the same item.
   Completed: 0
-  Constraints: 000000000a00000003000000
+  Constraints: 010000000b00000004000000
+  Rarity: 0

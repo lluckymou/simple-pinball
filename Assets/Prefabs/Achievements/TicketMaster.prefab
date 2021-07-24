@@ -45,5 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Ticket Master
   Description: Save 10 tickets. Perhaps you should spend them on a golden crate?
-  Completed: 0
-  Constraints: 000000000a000000
+  Completed: 1
+  Constraints: 010000000b000000
+  Rarity: 0

@@ -29,10 +29,11 @@ public static class Inventory
 
         Slots[position] = item;
 
-        // Updates item UI
-        SetMemory();
-        ItemGUI.instance.LoadItems();
+        // Post Inventory Changes
+        InventoryChanged();
     }
+
+    private static byte goldenCount = 0;
 
     public static void PurchaseItem(int price, Crates rarity)
     {
@@ -64,6 +65,19 @@ public static class Inventory
             return;
         }
 
+        // Achievements
+        Achievements.GiveAchievement(Achievements.GamblingNewbie);
+        if(rarity == Crates.Golden)
+        {
+            Achievements.GiveAchievement(Achievements.GamblingExpert);
+            if(++goldenCount >= 3)
+            {
+                Achievements.GiveAchievement(Achievements.GamblingTycoon);
+                goldenCount = 0;
+            }
+        }
+        else goldenCount = 0;
+
         // Subtracts the price from the ticket count
         #if UNITY_EDITOR
             if(!ItemGUI.instance.FreeShops)
@@ -73,9 +87,8 @@ public static class Inventory
         Slots[position] = GenerateItemFromRarity(rarity);
         ItemGUI.instance.PurchaseSound();
 
-        // Updates item UI
-        SetMemory();
-        ItemGUI.instance.LoadItems();
+        // Post Inventory Changes
+        InventoryChanged();
     }
 
     public static void Unequip()
@@ -117,9 +130,8 @@ public static class Inventory
 
         Equipped.OnEquip();
 
-        // Updates item UI
-        SetMemory();
-        ItemGUI.instance.LoadItems();
+        // Post Inventory Changes
+        InventoryChanged();
 
         // Plays sound from the board
         Field.instance.PowerupSound();
@@ -155,9 +167,20 @@ public static class Inventory
         Unequip();
         Slots = new Item[3] { Items.NoItem, Items.NoItem, Items.NoItem };
 
-        // Updates item UI
+        // Post Inventory Changes
+        InventoryChanged();
+    }
+
+    static void InventoryChanged()
+    {
         SetMemory();
         ItemGUI.instance.LoadItems();
+
+        // Checks for achievements
+        if(Slots[0] == Slots[1] && Slots[1] == Slots[2])
+            if(Slots[0] == Items.CurseOfAnubis) Achievements.GiveAchievement(Achievements.OneOfAKind);
+            else if(Slots[0] == Items.HealthBonus) Achievements.GiveAchievement(Achievements.StraightFlush);
+            else if(Slots[0] != Items.NoItem) Achievements.GiveAchievement(Achievements.Jackpot);
     }
 
     struct ItemIncidence

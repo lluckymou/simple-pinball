@@ -45,5 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Survivalist
   Description: Reach a 3x multiplier value.
-  Completed: 0
-  Constraints: 00000000
+  Completed: 1
+  Constraints: 01000000
+  Rarity: 0

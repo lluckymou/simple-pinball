@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Pinball Wizard
-  Description: Use each of every item in-game.
+  Description: Score 1,000,000 points in a game.
   Completed: 0
-  Constraints: 000000000a000000030000000500000001000000
+  Constraints: 010000000b00000004000000060000000a00000002000000
   Rarity: 2

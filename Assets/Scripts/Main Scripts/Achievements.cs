@@ -154,10 +154,7 @@ public class Achievements : MonoBehaviour
 
     public static AchievementEnumeration[] AllAchievements
     {
-        get
-        {
-            return (AchievementEnumeration[]) AchievementEnumeration.GetValues(typeof(AchievementEnumeration));
-        }
+        get => achievementIDs.Keys.ToArray();
     } 
 
     public static AchievementEnumeration GetEnumerationFromAchievement(Achievement achievement) =>
@@ -174,23 +171,43 @@ public class Achievements : MonoBehaviour
     {
         // Loads all achievements from memory
         foreach(AchievementEnumeration achievementEnumeration in AllAchievements)
-        {
+
             // Checks if said achievement is complete and gives it to the user
-            if(PlayerPrefs.GetInt(achievementEnumeration.ToString(), 0) == 1)
-                GiveAchievement(GetAchievementFromEnumeration(achievementEnumeration), true);
-        }
+            GetAchievementFromEnumeration(achievementEnumeration).Completed = (PlayerPrefs.GetInt(achievementEnumeration.ToString(), 0) == 1);
 
         // Loads all achievement UI
         AchievementGUI.instance.UpdateUI();
     }
 
-    void GiveAchievement(Achievement achievement, bool alreadyAchieved = false)
-    {
-        // TODO TODO TODO TODO TODO
-
-        if(!alreadyAchieved)
+    #if UNITY_EDITOR
+        public static void RemoveAchievement(Achievement achievement)
         {
+            achievement.Completed = false;
 
+            // Clears the achievement in memory
+            PlayerPrefs.SetInt(GetEnumerationFromAchievement(achievement).ToString(), 0);
+
+            // Reloads UI
+            AchievementGUI.instance.UpdateUI();
         }
+    #endif
+    public static void GiveAchievement(Achievement achievement)
+    {
+        // User already has achievement
+        if(achievement.Completed) return;
+
+        // Gives the achievement if it can be completed
+        achievement.Completed = achievement.CanBeCompleted;
+
+        if(!achievement.Completed) return;
+
+        // Saves in memory the achievement
+        PlayerPrefs.SetInt(GetEnumerationFromAchievement(achievement).ToString(), 1);
+
+        // Plays the "achievement get!" animation        
+        AchievementGUI.instance.AchievementGet(achievement);
+
+        // Reloads UI
+        AchievementGUI.instance.UpdateUI();
     }
 }

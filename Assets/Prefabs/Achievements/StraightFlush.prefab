@@ -46,4 +46,5 @@ MonoBehaviour:
   Name: Straight Flush
   Description: It's not poker but you've managed to get yourself three hearts anyway.
   Completed: 0
-  Constraints: 000000000a0000000300000005000000
+  Constraints: 010000000b0000000400000006000000
+  Rarity: 0

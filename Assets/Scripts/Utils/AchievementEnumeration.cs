@@ -1,5 +1,6 @@
 public enum AchievementEnumeration
 {
+    None,
     GettingStarted,
     Ninja,
     GamblingExpert,
