@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
                 Tickets += 1;
             }
 
-            if(_score > 1000000) Achievements.GiveAchievement(Achievements.PinballWizard);
+            if(_score >= 1000000) Achievements.GiveAchievement(Achievements.PinballWizard);
 
             // Updates UI text
             PlayerGUI.instance.Score.text = _score.ToString();
@@ -85,9 +85,9 @@ public class Player : MonoBehaviour
             PlayerPrefs.SetInt("ticketCount", value);
 
             if(_tickets > 0)
-                if(_tickets >= 1000) Achievements.GiveAchievement(Achievements.TicketManiac);
-                else if(_tickets >= 100) Achievements.GiveAchievement(Achievements.TicketHoarder);
-                else if(_tickets >= 10) Achievements.GiveAchievement(Achievements.TicketMaster);
+                if(_tickets >= 1000 && Achievements.TicketHoarder.Completed) Achievements.GiveAchievement(Achievements.TicketManiac);
+                else if(_tickets >= 100 && Achievements.TicketMaster.Completed) Achievements.GiveAchievement(Achievements.TicketHoarder);
+                else if(_tickets >= 10 && Achievements.TicketApprentice.Completed) Achievements.GiveAchievement(Achievements.TicketMaster);
                 else Achievements.GiveAchievement(Achievements.TicketApprentice);
 
             // Updates UI text
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
             // Updates multiplier variable
             _multiplier = value;
 
-            if(_multiplier >= 5) Achievements.GiveAchievement(Achievements.Ninja);
+            if(_multiplier >= 5 && Achievements.Survivalist.Completed) Achievements.GiveAchievement(Achievements.Ninja);
             else if(_multiplier >= 3) Achievements.GiveAchievement(Achievements.Survivalist);
 
             // Updates UI text
