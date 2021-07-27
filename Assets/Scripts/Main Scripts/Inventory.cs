@@ -178,8 +178,8 @@ public static class Inventory
 
         // Checks for achievements
         if(Slots[0] == Slots[1] && Slots[1] == Slots[2])
-            if(Slots[0] == Items.CurseOfAnubis) Achievements.GiveAchievement(Achievements.OneOfAKind);
-            else if(Slots[0] == Items.HealthBonus) Achievements.GiveAchievement(Achievements.StraightFlush);
+            if(Slots[0] == Items.CurseOfAnubis && Achievements.Jackpot.Completed) Achievements.GiveAchievement(Achievements.OneOfAKind);
+            else if(Slots[0] == Items.HealthBonus && Achievements.Jackpot.Completed) Achievements.GiveAchievement(Achievements.StraightFlush);
             else if(Slots[0] != Items.NoItem) Achievements.GiveAchievement(Achievements.Jackpot);
     }
 

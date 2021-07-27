@@ -21257,7 +21257,7 @@ MonoBehaviour:
   Common: {r: 0.7176471, g: 0.8509804, b: 0.84313726, a: 1}
   Rare: {r: 0.5294118, g: 0.77254903, b: 0.7607843, a: 1}
   Legendary: {r: 0.2784314, g: 0.7058824, b: 0.6862745, a: 1}
-  AchievementGetPanel: {fileID: 1655405039}
+  AchievementGetPanel: {fileID: 1655405043}
   AchievementGetImage: {fileID: 2091292455}
   AchievementGetText: {fileID: 2106680693}
 --- !u!1 &1869193136

@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 class AchievementGUI : MonoBehaviour
 {
@@ -75,7 +77,7 @@ class AchievementGUI : MonoBehaviour
 
     [Header("Achievement Get")]
     [SerializeField]
-    GameObject AchievementGetPanel;
+    Animator AchievementGetPanel;
     
     [SerializeField]
     Image AchievementGetImage;
@@ -83,12 +85,17 @@ class AchievementGUI : MonoBehaviour
     [SerializeField]
     TMP_Text AchievementGetText;
 
-    void Awake()
+    // Animation queue
+    bool animationIsPlaying
     {
-        #if UNITY_EDITOR
-            GiveAchievement = AchievementEnumeration.None;
-        #endif
+        get => AchievementGetPanel.GetCurrentAnimatorStateInfo(0).IsName("Base.AchievementGet");
     }
+
+    Queue<Achievement> achievementQueue = new Queue<Achievement>();
+
+    #if UNITY_EDITOR
+        void Awake() => GiveAchievement = AchievementEnumeration.None;
+    #endif
 
     #if UNITY_EDITOR
         void Update()
@@ -107,12 +114,38 @@ class AchievementGUI : MonoBehaviour
         }
     #endif
 
+    // Variable needed as animation only starts the following frame
+    bool _animationWaiting = false;
+    IEnumerator PlayAnimation()
+    {
+        // Plays animation
+        AchievementGetPanel.Play("AchievementGet");
+
+        // Waits for the animation to complete
+        do yield return null;
+        while(animationIsPlaying);
+
+        // Tries to play next animation
+        _animationWaiting = false;
+        PlayQueue();
+    }
+
+    void PlayQueue()
+    {
+        if(achievementQueue.Count <= 0 || animationIsPlaying || _animationWaiting) return;
+
+        Achievement _achievement = achievementQueue.Dequeue();
+        AchievementGetImage.sprite = _achievement.Sprite;
+        AchievementGetText.text = _achievement.Name;
+
+        _animationWaiting = true;
+        StartCoroutine(PlayAnimation());
+    }
+
     public void AchievementGet(Achievement achievement)
     {
-        AchievementGetImage.sprite = achievement.Sprite;
-        AchievementGetText.text = achievement.Name;
-
-        AchievementGetPanel.GetComponent<Animator>().Play("AchievementGet");
+        achievementQueue.Enqueue(achievement);
+        PlayQueue();
     }
 
     public void GetAchievementInfo(string _achievement)
