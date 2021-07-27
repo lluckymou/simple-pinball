@@ -118,8 +118,9 @@ class AchievementGUI : MonoBehaviour
     bool _animationWaiting = false;
     IEnumerator PlayAnimation()
     {
-        // Plays animation
+        // Plays animation and sound
         AchievementGetPanel.Play("AchievementGet");
+        GUIAudio.Speaker.PlayOneShot(GUIAudio.AchievementGetSound);
 
         // Waits for the animation to complete
         do yield return null;

@@ -48,16 +48,6 @@ public class ItemGUI : MonoBehaviour
     [SerializeField]
     List<Image> ThirdItem;
 
-    [Header("Audio")]
-    [SerializeField]
-    AudioSource UISpeaker;
-
-    [SerializeField]
-    AudioClip Purchase;
-
-    [SerializeField]
-    AudioClip PurchaseFail;
-
     void Awake()
     {
         #if UNITY_EDITOR
@@ -112,9 +102,9 @@ public class ItemGUI : MonoBehaviour
         LoadItem(Inventory.Slots[2], ThirdItem);
     }
 
-    public void PurchaseSound() => UISpeaker.PlayOneShot(Purchase);
+    public void PurchaseSound() => GUIAudio.Speaker.PlayOneShot(GUIAudio.PurchaseSound);
 
-    public void PurchaseFailSound() => UISpeaker.PlayOneShot(PurchaseFail);
+    public void PurchaseFailSound() => GUIAudio.Speaker.PlayOneShot(GUIAudio.PurchaseFailSound);
 
     void LoadItem(Item item, List<Image> itemSlot)
     {

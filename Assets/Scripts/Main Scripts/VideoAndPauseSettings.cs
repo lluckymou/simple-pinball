@@ -44,7 +44,7 @@ public class VideoAndPauseSettings : MonoBehaviour
     void OnApplicationFocus(bool hasFocus)
     {   
         #if UNITY_EDITOR
-            if(!hasFocus && StopAutoPause) Pause();
+            if(!hasFocus && !StopAutoPause) Pause();
         #else
             if(!hasFocus) Pause();
         #endif

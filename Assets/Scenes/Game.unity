@@ -5680,6 +5680,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482884011}
   m_CullTransparentMesh: 1
+--- !u!1 &488410681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 488410682}
+  - component: {fileID: 488410683}
+  m_Layer: 0
+  m_Name: GUI Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &488410682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488410681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 914537834}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488410683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488410681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301a34da0ac1b5945bc2e1f1b2dd56b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UISpeaker: {fileID: 1251597991}
+  _purchase: {fileID: 8300000, guid: 2b9aed4ec161ea8469a131b891d58bfb, type: 3}
+  _purchaseFail: {fileID: 8300000, guid: 2bac06c359755d040b0b69459e8b94a5, type: 3}
+  _achievementGet: {fileID: 8300000, guid: 36e655ea4963f2548ad7b53c2df6c70d, type: 3}
 --- !u!4 &492583514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1405900295115806146, guid: ffa35e5ed8abb9e43a2adfdf23ae5137, type: 3}
@@ -8870,7 +8917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -10802,6 +10849,7 @@ Transform:
   - {fileID: 1820904383}
   - {fileID: 1869186476}
   - {fileID: 1506548827}
+  - {fileID: 488410682}
   m_Father: {fileID: 16338503}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20596,9 +20644,6 @@ MonoBehaviour:
   ThirdItem:
   - {fileID: 1630128818}
   - {fileID: 739654177}
-  UISpeaker: {fileID: 1251597991}
-  Purchase: {fileID: 8300000, guid: 2b9aed4ec161ea8469a131b891d58bfb, type: 3}
-  PurchaseFail: {fileID: 8300000, guid: 2bac06c359755d040b0b69459e8b94a5, type: 3}
 --- !u!1 &1821709222
 GameObject:
   m_ObjectHideFlags: 0
@@ -21539,7 +21584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.40392157, b: 0.40392157, a: 0.9843137}
+  m_Color: {r: 0.19607843, g: 0.40392157, b: 0.40392157, a: 0.99215686}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
