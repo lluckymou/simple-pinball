@@ -52,5 +52,5 @@ Now simply open any script and let Visual Studio's C# extension configure itself
 Before submitting any changes, make sure to:
 
 - Run your build to check for any compilation/runtime errors;
-- Change the *"Game" scene*'s version *Text* component following the format: `1.MAJOR.MINOR.FIXES` (if it's not a fix you can ommit the `.0`, such as `1.0.5` instead of `1.0.5.0`);
+- Change the *"Game" scene*'s version *Text* component following the format: `1.MAJOR.MINOR.FIXES` (if it's not a fix you can omit the `.0`, such as `1.0.5` instead of `1.0.5.0`);
 - Check if the compression format (under *Project Settings > Player*) is listed as **Disabled**.
